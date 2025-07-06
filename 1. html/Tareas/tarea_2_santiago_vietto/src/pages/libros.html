@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">         <!-- Conjunto de caracteres UTF-8 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">         <!-- muestran info en el navegador -->
+
+        <!-- TITULO e ICONO de la pestaña -->
+        <title>LOTR Wiki</title>
+        <link rel="shortcut icon" href="https://cdn2.steamgriddb.com/icon/bc79c67c7b22cbc0cf25abf756cd7e52/32/256x256.png">
+    </head>
+    <body>
+        <!-- Toda aquella data que si puede ver el usuario en el sitio y elementos con los que puede interactuar. -->
+            <header> 
+                <nav>
+                    <img src="https://i.pinimg.com/736x/0b/19/15/0b191552dd10ec2f34c8fc1065e7ce1c.jpg" alt=""> 
+                    <ul>
+                        <li>
+                            <a href="./index.html">Inicio</a>
+                        </li>
+                        <li> 
+                            <a href="">Biografía de J.R.R. Tolkien</a>
+                        </li>
+                        <li>
+                            <a href="./libros.html">Orden de lectura de Tolkien y la Tierra Media</a>
+                        </li>
+                        <li> 
+                            <a href="./personajes.html">Guía de personajes</a> 
+                        </li>
+                        <li> 
+                            <a href="">Adaptaciones cinematográficas</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <h1>Orden de lectura de Tolkien y la Tierra Media</h1>
+
+                <p>A pesar de que el siguiente orden sea el cronológico. La lectura del "Silmarillion" y los "Cuentos inconclusos de Númenor y la Tierra Media" pueden
+                    ser leídos luego de terminar de leer el "Retorno del Rey". </p>
+
+                <table> 
+                    <thead>
+                        <tr> 
+                            <th>Orden</th>
+                            <th>Título</th>
+                            <th>Portada</th>
+                            <th>Autor</th>
+                            <th>Idioma</th>
+                            <th>Editoral</th> 
+                            <th>Precio online</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1°</td> 
+                            <td>El Silmarillion</td>
+                            <td><img src="../assets/images/silmarillion.png" alt="" height="220"></td>
+                            <td>J.R.R. Tolkien Editado por Christopher Tolkien</td>
+                            <td>Español</td>
+                            <td>Minotauro</td>
+                            <td>$64000</td>
+                        </tr>
+                       <tr>
+                            <td>2°</td> 
+                            <td>Cuentos Inconclusos de Númenor y la Tierra Media</td>
+                            <td><img src="../assets/images/numenor.png" alt="" height="220"></td>
+                            <td>J.R.R. Tolkien Editado por Christopher Tolkien</td>
+                            <td>Español</td>
+                            <td>Minotauro</td>
+                            <td>$56000</td>
+                        </tr>
+                        <tr>
+                            <td>3°</td> 
+                            <td>El Hobbit</td>
+                            <td><img src="../assets/images/hobbit.png" alt="" height="220" width="147"></td>
+                            <td>J.R.R. Tolkien</td>
+                            <td>Español</td>
+                            <td>Minotauro</td>
+                            <td>$32000</td>
+                        </tr>
+                        <tr>
+                            <td>4°</td> 
+                            <td>El Señor de los Anillos: La Comunidad del Anillo</td>
+                            <td><img src="../assets/images/comunidad.png" alt="" height="220" width="147"></td>
+                            <td>J.R.R. Tolkien</td>
+                            <td>Español</td>
+                            <td>Minotauro</td>
+                            <td>$30000</td>
+                        </tr>
+                        <tr>
+                            <td>5°</td> 
+                            <td>El Señor de los Anillos: Las dos Torres</td>
+                            <td><img src="../assets/images/torres.png" alt="" height="220" width="147"></td>
+                            <td>J.R.R. Tolkien</td>
+                            <td>Español</td>
+                            <td>Minotauro</td>
+                            <td>$45000</td>
+                        </tr>
+                        <tr>
+                            <td>6°</td> 
+                            <td>El Señor de los Anillos: El Retorno del Rey</td>
+                            <td><img src="../assets/images/rey.png" alt="" height="220" width="147"></td>
+                            <td>J.R.R. Tolkien</td>
+                            <td>Español</td>
+                            <td>Minotauro</td>
+                            <td>$35000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Encargo de libros</h2>
+                <p>Completar el siguiente formulario para consultar stock del libro deseado:</p>
+
+                    <form> 
+                        <input type="text" placeholder="Nombre"></label>
+                        <br>
+                        <input type="text" placeholder="Apellido"></label>
+                        <br>
+                        <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]" placeholder="Email"> 
+                        <br>
+                        <label >Fecha de nacimiento:</label>
+                        <br>
+                        <input type="date">
+                        <br>
+                        <label>Genero:</label>
+                        <br>
+                        <label>Masculino<input type="radio" name="genero" checked></label> 
+                        <label>Femenino<input type="radio" name="genero"></label> 
+                        <label>Otro<input type="radio" name="genero"></label> 
+                        <br>
+                        <label>Libro a consultar: 
+                            <select>
+                                <option value="">--Seleccionar--</option>
+                                <option value="silmarillion">El Silmarillion</option>
+                                <option value="numenor_tierra_media">Cuentos Inconclusos de Númenor y la Tierra Media</option>
+                                <option value="hobbit">El Hobbit</option>
+                                <option value="lotr_comunidad">El Señor de los Anillos: La Comunidad del Anillo</option>
+                                <option value="lotr_torres">El Señor de los Anillos: Las Dos Torres</option>
+                                <option value="lotr_rey">El Señor de los Anillos: El retorno del Rey</option>
+                            </select>
+                        </label>
+                        <br>
+                        <textarea cols="30" rows="10" placeholder="Otras consultas"></textarea> 
+                        <br>
+                        <button type="submit">Enviar</button>
+                    </form>
+   
+            </main>
+            <footer>
+                    <ul>
+                        <li>
+                            <a href="">Facebook</a>
+                        </li>
+                        <li> 
+                            <a href="">Twitter</a> 
+                        </li>
+                        <li>
+                            <a href="">Instagram</a>
+                        </li>
+                    </ul>
+            </footer>
+    </body>
+</html>
