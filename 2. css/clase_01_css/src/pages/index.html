@@ -1,0 +1,95 @@
+<!-- CSS: Cascading Style Sheet. El modelo de cascada y especificidad permite añadir estilos a cualquier elemento mediante herencia. Se utilizan propiedades y estas tienen un
+          determinado valor, por ejemplo color: red, font-size: 15px. Se coloca un ";" al final de cada valor.
+          A traves del atributo style se pueden hacer muchas cosas, pero es una mala practica utilizarlo porque al añadir mas y mas propiedades, se aleja cada vez mas de la
+          pantalla el componente y es necesario hacer scroll en la pantalla. Otra de las razones es que se debe declarar la etiqueta style por cada elemento. Pero se lo puede 
+          utilizar para funcionalidades muy especificas, como crear variables con valores y poder utilizarlo en alguna funcionalidad, por ejemplo, una variable que guarde un 
+          valor y que dado el mismo se coloque tal color u otro.
+          Para evitar estos problemas se utiliza la etiqueta style en el head. Se debe indicar el elemento al cual se le va a colocar un determinado atributo y valor. Pero 
+          cada vez que creemos un nuevo archivo y se deba utilizar el mismo estilo, se debe pegar el mismo codigo en cada archivo. Entonces, para evitar esto se crea una hoja 
+          de estilo.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" src=""> <!-- Siempre el formato de la imagen en .ico -->
+    <link rel="stylesheet" href="../style/style.css"> 
+    <!-- <style>
+        /*
+        SELECTOR: Mecanismo por el cual nos comunicamos con un elemento html. Tenemos 3 tipos de selectores:
+        - Etiqueta
+        - Clase
+        - ID
+        */
+
+        p{
+            color: red;
+            background-color: green;
+        }
+
+    </style> -->
+</head>
+<body>
+
+    <!--
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+
+    <p class="river">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+    <p class="river">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+    <p class="river">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+
+    <p class="boca">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+    <p class="boca">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+    <p class="boca" id="arquero">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p> 
+
+    <section>
+        <h2>me gusta el pan</h2>
+        <p>hola manola</p>
+        <p>hola manola</p>
+    </section>
+
+    <article>
+        <h3>me gusta el queso</h3>
+        <p>hola manola</p>
+    </article> 
+
+    <section class="pepe">
+        <h2>titulo h2 section</h2>
+        <article>
+            <h2>titulo h2 article</h2>
+        </article>
+    </section>
+
+    <article>
+        <h2>titulo h2 article de afuera</h2>
+    </article> 
+
+    <section>
+        <h2>titulo</h2>
+        <p>hola manola</p>
+        <p>hola manola</p>
+        <p>hola manola</p>
+    </section> -->
+
+    <!-- https://loading.io/css/ -->
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <br>
+    <input type="text">
+    <br>
+    <input type="text">
+    <br>
+    <input type="email">
+
+
+</body>
+</html>
