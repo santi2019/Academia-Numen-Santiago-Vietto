@@ -7,31 +7,26 @@
         <!-- TITULO e ICONO de la pestaña -->
         <title>LOTR Wiki</title>
         <link rel="shortcut icon" href="https://cdn2.steamgriddb.com/icon/bc79c67c7b22cbc0cf25abf756cd7e52/32/256x256.png">
+        <link rel="stylesheet" href="../style/index.css"> 
     </head>
     <body>
         <!-- Toda aquella data que si puede ver el usuario en el sitio y elementos con los que puede interactuar. -->
-            <header> 
-                <nav>
-                    <img src="https://i.pinimg.com/736x/0b/19/15/0b191552dd10ec2f34c8fc1065e7ce1c.jpg" alt=""> 
-                    <ul>
-                        <li>
-                            <a href="./index.html">Inicio</a>
-                        </li>
-                        <li> 
-                            <a href="">Biografía de J.R.R. Tolkien</a>
-                        </li>
-                        <li>
-                            <a href="./libros.html">Orden de lectura de Tolkien y la Tierra Media</a>
-                        </li>
-                        <li> 
-                            <a href="./personajes.html">Guía de personajes</a> 
-                        </li>
-                        <li> 
-                            <a href="">Adaptaciones cinematográficas</a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
+        <header class="header"> 
+            <nav class="navbar">
+                <img class="navbarLogo" src="../assets/images/logo.png" alt=""> 
+                <ul class="navbarMenu">
+                    <li>
+                        <a href="./index.html">Inicio</a>
+                    </li>
+                    <li> 
+                        <a href="./biografia.html">Biografía de J.R.R. Tolkien</a>
+                    </li>
+                    <li>
+                        <a href="./libros.html">Libros</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
             <main>
                 <h1>Orden de lectura de Tolkien y la Tierra Media</h1>
 
@@ -146,18 +141,20 @@
                     </form>
    
             </main>
-            <footer>
-                    <ul>
-                        <li>
-                            <a href="">Facebook</a>
-                        </li>
-                        <li> 
-                            <a href="">Twitter</a> 
-                        </li>
-                        <li>
-                            <a href="">Instagram</a>
-                        </li>
-                    </ul>
-            </footer>
+        <footer class="footer">
+            <img class="footerLogo" src="../assets/images/tolkienLogo.png" alt="">
+            <span class="footerCopyright">© 2025 LOTR Wiki. All Rights Reserved.</span>
+            <ul class="footerSocialMedia">
+                <li>
+                    <a href="">Facebook</a>
+                </li>
+                <li> 
+                    <a href="">Twitter</a> 
+                </li>
+                <li>
+                    <a href="">Instagram</a>
+                </li>
+            </ul>
+        </footer>
     </body>
 </html>
