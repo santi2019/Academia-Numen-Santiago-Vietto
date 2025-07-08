@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en"> 
-    <head>
-        <meta charset="UTF-8">         <!-- Conjunto de caracteres UTF-8 -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">         <!-- muestran info en el navegador -->
+<head>
+    <meta charset="UTF-8">         <!-- Conjunto de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">         <!-- muestran info en el navegador -->
 
-        <!-- TITULO e ICONO de la pestaña -->
-        <title>LOTR Wiki</title>
-        <link rel="shortcut icon" href="https://cdn2.steamgriddb.com/icon/bc79c67c7b22cbc0cf25abf756cd7e52/32/256x256.png">
-        <link rel="stylesheet" href="../style/index.css"> 
-    </head>
-    <body>
-        <!-- Toda aquella data que si puede ver el usuario en el sitio y elementos con los que puede interactuar. -->
-        <header class="header"> 
-            <nav class="navbar">
-                <img class="navbarLogo" src="../assets/images/logo.png" alt=""> 
-                <ul class="navbarMenu">
-                    <li>
-                        <a href="./index.html">Inicio</a>
-                    </li>
-                    <li> 
-                        <a href="./biografia.html">Biografía de J.R.R. Tolkien</a>
-                    </li>
-                    <li>
-                        <a href="./libros.html">Libros</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-            <main>
-                <h1>Orden de lectura de Tolkien y la Tierra Media</h1>
-
-                <p>A pesar de que el siguiente orden sea el cronológico. La lectura del "Silmarillion" y los "Cuentos inconclusos de Númenor y la Tierra Media" pueden
-                    ser leídos luego de terminar de leer el "Retorno del Rey". </p>
-
-                <table> 
+    <!-- TITULO e ICONO de la pestaña -->
+    <title>LOTR Wiki</title>
+    <link rel="shortcut icon" href="https://cdn2.steamgriddb.com/icon/bc79c67c7b22cbc0cf25abf756cd7e52/32/256x256.png">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/libros.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header"> 
+        <nav class="navbar">
+            <a href="./index.html"><img class="navbarLogo" src="../assets/images/logo.png" alt="" href="./index.html"></a>
+            <ul class="navbarMenu">
+                <li>
+                    <a href="./index.html">Inicio</a>
+                </li>
+                <li> 
+                    <a href="./biografia.html">Biografía de J.R.R. Tolkien</a>
+                </li>
+                <li>
+                    <a href="./libros.html">Libros</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="booksTitle">
+            <h1>Orden de lectura de Tolkien y la Tierra Media</h1>
+            <hr>
+            <p>A pesar de que el siguiente orden sea el cronológico. La lectura del "Silmarillion" y los "Cuentos inconclusos de Númenor y la Tierra Media" pueden ser leídos luego 
+                de terminar de leer el "Retorno del Rey". 
+            </p>
+        </section>
+        <section class="booksContent">
+            <div class="booksTable">
+                <h2>Libros</h2>
+                <table class="tableContent"> 
                     <thead>
                         <tr> 
                             <th>Orden</th>
@@ -55,7 +63,7 @@
                             <td>Minotauro</td>
                             <td>$64000</td>
                         </tr>
-                       <tr>
+                        <tr>
                             <td>2°</td> 
                             <td>Cuentos Inconclusos de Númenor y la Tierra Media</td>
                             <td><img src="../assets/images/numenor.png" alt="" height="220"></td>
@@ -102,59 +110,60 @@
                         </tr>
                     </tbody>
                 </table>
-
+            </div>
+            <div class="booksForm">
                 <h2>Encargo de libros</h2>
                 <p>Completar el siguiente formulario para consultar stock del libro deseado:</p>
-
-                    <form> 
-                        <input type="text" placeholder="Nombre"></label>
-                        <br>
-                        <input type="text" placeholder="Apellido"></label>
-                        <br>
-                        <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]" placeholder="Email"> 
-                        <br>
-                        <label >Fecha de nacimiento:</label>
-                        <br>
-                        <input type="date">
-                        <br>
-                        <label>Genero:</label>
-                        <br>
-                        <label>Masculino<input type="radio" name="genero" checked></label> 
-                        <label>Femenino<input type="radio" name="genero"></label> 
-                        <label>Otro<input type="radio" name="genero"></label> 
-                        <br>
-                        <label>Libro a consultar: 
-                            <select>
-                                <option value="">--Seleccionar--</option>
-                                <option value="silmarillion">El Silmarillion</option>
-                                <option value="numenor_tierra_media">Cuentos Inconclusos de Númenor y la Tierra Media</option>
-                                <option value="hobbit">El Hobbit</option>
-                                <option value="lotr_comunidad">El Señor de los Anillos: La Comunidad del Anillo</option>
-                                <option value="lotr_torres">El Señor de los Anillos: Las Dos Torres</option>
-                                <option value="lotr_rey">El Señor de los Anillos: El retorno del Rey</option>
-                            </select>
-                        </label>
-                        <br>
-                        <textarea cols="30" rows="10" placeholder="Otras consultas"></textarea> 
-                        <br>
-                        <button type="submit">Enviar</button>
-                    </form>
-   
-            </main>
-        <footer class="footer">
-            <img class="footerLogo" src="../assets/images/tolkienLogo.png" alt="">
-            <span class="footerCopyright">© 2025 LOTR Wiki. All Rights Reserved.</span>
-            <ul class="footerSocialMedia">
-                <li>
-                    <a href="">Facebook</a>
-                </li>
-                <li> 
-                    <a href="">Twitter</a> 
-                </li>
-                <li>
-                    <a href="">Instagram</a>
-                </li>
-            </ul>
-        </footer>
-    </body>
+                <form> 
+                    <input type="text" placeholder="Nombre"></label>
+                    <br>
+                    <input type="text" placeholder="Apellido"></label>
+                    <br>
+                    <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]" placeholder="Email"> 
+                    <br>
+                    <label >Fecha de nacimiento:</label>
+                    <br>
+                    <input type="date">
+                    <br>
+                    <label>Genero:</label>
+                    <br>
+                    <label>Masculino<input type="radio" name="genero" checked></label> 
+                    <label>Femenino<input type="radio" name="genero"></label> 
+                    <label>Otro<input type="radio" name="genero"></label> 
+                    <br>
+                    <label>Libro a consultar: 
+                        <select>
+                            <option value="">--Seleccionar--</option>
+                            <option value="silmarillion">El Silmarillion</option>
+                            <option value="numenor_tierra_media">Cuentos Inconclusos de Númenor y la Tierra Media</option>
+                            <option value="hobbit">El Hobbit</option>
+                            <option value="lotr_comunidad">El Señor de los Anillos: La Comunidad del Anillo</option>
+                            <option value="lotr_torres">El Señor de los Anillos: Las Dos Torres</option>
+                            <option value="lotr_rey">El Señor de los Anillos: El retorno del Rey</option>
+                        </select>
+                    </label>
+                    <br>
+                    <textarea cols="30" rows="10" placeholder="Otras consultas"></textarea> 
+                    <br>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <img class="footerLogo" src="../assets/images/tolkienLogo.png" alt="">
+        <span class="footerCopyright">© 2025 LOTR Wiki. All Rights Reserved.</span>
+        <ul class="footerSocialMedia">
+            <li>
+                <a href="">Facebook</a>
+            </li>
+            <li> 
+                <a href="">Twitter</a> 
+            </li>
+            <li>
+                <a href="">Instagram</a>
+            </li>
+        </ul>
+    </footer>
+</body>
 </html>
