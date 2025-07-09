@@ -1,0 +1,149 @@
+/* DIMENSIONES: Las dimensiones permiten establecer medidas de tamaño para los elementos html o textos. 
+
+- DIMENSIONES ABSOLUTAS: Son aquellas que tienen un valor por si mismas. Por ejemplo:
+    -> kg
+    -> cm
+    -> px
+
+- DIMENSIONES RELATIVAS: Son aquellas que dependen de una medida absoluta para tener valor. Por ejemplo:
+    -> %
+    -> viewport (viewport height,viewport width)
+    -> rem, em
+*/
+
+/*****************************************************************************************************************/
+ 
+/*** MEDIDAS ABSOLUTAS ***/
+
+/*
+- Display inline: Permite convertir una etiqueta de bloque en una etiqueta de linea.
+- Display block: Permite convertir una etiqueta de linea en una etiqueta de bloque.
+- Display inline-block: Permite que los objetos conserven la respuesta de las medidas pero quitando el ancho por 
+  defecto, permitiendo asi que se coloquen las etiquetas de bloque una al lado de la otra. Si se agregan mas divs
+  y no entran en el largo de la pantalla, se van agregando abajo.
+
+div {
+    background-color: blue;
+    height: 200px;
+    width: 200px;
+    display: inline; 
+    display: inline-block; 
+}
+
+span{
+    background-color: orange;
+    display: block; 
+}
+
+*/
+
+/*****************************************************************************************************************/
+
+/*** MEDIDAS RELATIVAS ***/
+
+/*
+
+- Porcentual %: Las medidas del hijo se adaptan a las del padre.
+    - Flow design: Siempre que se tenga la oportunidad de poner un porcentual para hacer adaptaciones naturales, 
+      conforme se altere el ancho de la pantalla, lo debemos aplicar porque despues nos va a ahorrar trabajo cuando
+      tengamos que adaptar cosas manualmente con media query. 
+
+
+.padre{
+    background-color: aqua;
+    width: 400px;
+    height: 400px;
+}
+
+.hijo{
+    background-color: orange;
+    height: 25%;
+    width: 25%;
+}
+
+
+- Viewport: Tipo de medida que permite medir respecto de la parte visible del navegador.
+
+Esta configuracion global quita todos los margenes por defecto que tengan los containers. 
+
+*{
+    margin: 0;
+}
+
+   El 100% de alto es indetectable porque en elatura el body no tiene una medida fija. El body no tiene altura
+   porque puede crecer indefinidamente. Entonces para que un elemento pueda tener algo adaptable en altura se
+   coloca 100vh (view hight).
+   
+   El body es una etiqueta de bloque el cual tiene un tamaño de ancho por defecto el cual es el tamaño de ancho 
+   del dispositivo, por lo tanto se le puede tomar porcentualmente. Entonces los demas section, div o article
+   pueden robar el ancho porcentual del body. Pero no se puede en altura, ya que el 100% en altura no se puede
+   respecto del body, pero si respecto de un contenedor padre.
+
+section{
+    background-color: green;
+    width: 100%;
+    height: 100vh; 
+}
+
+article{
+    background-color: brown;
+    height: 100vh; 
+} 
+    
+- rem: Es una medida relativa y global que depende del font-size de la etiqueta html. Si no se aclara en la 
+  etiqueta html el font size, cada rem valdra 16px, pero se lo puede modificar. Entonces si:
+  - font-size: 16px entonces 1 rem = 16px
+  - font-size: 12px entonces 1 rem = 12px
+  Entonces, ahora, a los valores no los ponemos en pixeles sino los ponemos en rem en sus equivalencias. Y cuando
+  se cambia el valor de referencia en la etiqueta html, cambian todos los valores referenciados.
+  Es recomendable usar rem en textos y no en medidas de contenedores.
+
+*/
+
+html{
+    font-size: 16px;
+}
+
+h1{
+    font-size: 2rem; 
+}
+
+h2{
+    font-size: 1.75rem;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+
+h4{
+    font-size: 1.25rem;
+}
+
+
+/*
+- em: Una seccion en particular establece su propio sistema de medida. Para que los elementos internos respondan 
+  a dicha medida se establece el sistema de em. En el caso del ejemplo:
+    - 1 em = 20px, ya que responde al font-size del contenedor, y los elementos dentro de dicho contenedor, si 
+    utilizan el em, van a capturar la medida de su padre, en lugar de la medida generica de toda la pagina.   
+*/
+
+.rebelde{
+    font-size: 20px;
+}
+
+.rebelde h1{
+    font-size: 2em;
+}
+
+.rebelde h2{
+    font-size: 1.75em;
+}
+
+.rebelde h3{
+    font-size: 1.5em;
+}
+
+.rebelde h4{
+    font-size: 1.25em;
+}

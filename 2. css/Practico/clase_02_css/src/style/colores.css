@@ -1,0 +1,40 @@
+/* COLORES
+
+    - rgb (red, green, blue): Conforme le damos valores a cada uno, se mezclan para dar un color. Existe un 
+      rango maximo de hasta donde podemos llevar el valor de red, green y blue, por lo que podemos movernos
+      en el rango de 0 a 255, teniendo entonces una cantidad de 256 levado a la 3, combinaciones posibles,
+      es decir 16777256 aprox de maximas combinaciones posibles que permite el esquema de 8 bits. 
+      rgb(red, green, blue)
+      La funcion rbga habilita un cuarto slot de valor que tiene un rango entre 0 y 1, donde 0 es maxima 
+      transparencia y 1 maxima solidez.
+    
+      - Hexadecimal: Solo dispone de 16 valores que pueden combinarse en pares. El problema es que despues del
+      9 no se pueden poner numeros de dos digitos, por lo que se colocan letras. Los colores se forman mediante
+      combinaciones grupales, en donde el primer par representa el red, el segundo el green y el tercero el blue.
+      0 1 2 3 4 5 6 7 8 9 A B C D E F
+      #3b45cd: 3b(R) 45(G) cd(B) entonces:
+        3 -> 3
+        B -> 11
+        3 * 11 + (3 + 11) = 33 + 14 = 47 de valor red en RGB.
+      La transparencia tambien es posible, y se hace agregando otro par dual al final del valor hexadecimal.
+
+    - hsl (Hue Saturation Lightness): Tenemos los siguientes rangos para cada uno:
+        Matriz: 0 - 360
+        Saturacion: 0 - 100%
+        Brillo: 0 - 100%
+      En sierto modo, la matriz se maneja en grados mientras que el brillo y saturacion se manejan en porcentuales.
+      No hay una correlacion directa entre los valores de hsl y rgb.
+
+*/
+
+div{
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+    background-color: rgb(255, 192, 203);
+    background-color: rgba(255, 192, 203, 0.5);
+    background-color: #ffc0cb;
+    background-color: #ffc0cb80;
+    background-color: hsl(350, 100%, 88%);
+}
+
