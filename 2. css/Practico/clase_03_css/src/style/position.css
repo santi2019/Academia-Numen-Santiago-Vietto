@@ -1,0 +1,141 @@
+/*
+
+    POSITIONING: Es una estrategia muy rigida y no facil adaptable a diferentes dispositivos, y se deben hacer 
+    muchas configuraciones para que algo que se ve en la PC se vea correctamente en un mobil.
+    El posicionamiento es una propiedad de CSS que nos permite desencajar un contenedor pasandolo del plano 
+    bidimencional (x, y) al plano tridimensional (x, y, z).
+    Al desencajar el elemento, ya no ocupa espacio en el plano bidimensional permitiendo a los elementos, que 
+    estaban siendo empujados por este, tomar su lugar.
+    El elemento desencajado puede ser reubicado manuamente a cualquier parte del viewport que nosotros deseemos.
+    Incluso puede ser fijado en algun lugar en especifico.
+
+    Tipos de posicionamiento:
+
+    - Absoluto: Se posiciona relativo a los margenes del viewport, pero cuando se hace scroll el contenedor se 
+      va. Entonces, esta fijado al body.
+    - Relativo: Se posiciona relativo a los margenes de su contenedor padre.
+    - Fijado: Similar al absoluto pero queda fijado donde se le especifique, y al hacer scroll, el contenedor
+      nos sigue. Entonces, esta fijado al viewport. El posicionamiento fijado tiene la particularidad de que 
+      cuando se ejecuta convierte al elemento a uno de tipo inline, porque sin ancho no existe, pero es maleable
+      a las medidas que se le coloquen, por lo tanto se le debe agregar de nuevo el ancho del 100%. Si no se le
+      coloca el ancho, pero se agrega un elemento, por ejemplo, texto, el contenedor adoptara las medidas del 
+      texto.
+    - Direccionamiento: Es posible mover los elementos en el eje X e Y:
+        - left
+        - rigt
+        - top
+        - bottom
+    El direccionamiento en el eje Z se asigna en orden de menor a mayor en funcion del orden de ejecucion en html.
+    Pero es posible modificar los valores de este indice mediante:
+        - z-index: El indice Z solamente funciona en elementos desencajados, es decir, elementos que tienen eje Z,
+          ya que, los elementos bidimensionales con los que naturalmente se trabaja no reaccionen al indice Z.
+
+*/
+
+/*****************************************************************************************************************/
+
+/*** POSITION ABSOLUTE + DIRECCIONAMIENTO ***/
+
+/* 
+    Si tenemos los 3 elementos desencajados podemos elejir quien poner delante de quien. Normalmente tiene prioridad
+    de ponerse adelate aquel que se ejecuto al ultimo, en este caso el contenedor azul, segun el orden de html.
+    En este caso, el orden del eje Z es 1 para el contendor verde, 2 para el rojo y 3 para el verde, en donde el
+    que tiene mas prioridad es el que tiene mas valor, en este caso el contenedor azul. Pero es posible modificarlos.
+
+
+div {
+    width: 200px;
+    height: 200px;
+}
+
+.container1 {
+    background-color: green;
+    position: absolute;
+    left: 100px;
+    z-index: 3;
+}
+
+.container2 {
+    background-color: red;
+    position: absolute;
+    top: 100px;
+    z-index: 1;
+}
+
+.container3 {
+    background-color: blue;
+    position: absolute;
+    z-index: 2;
+}
+
+*/
+
+/*****************************************************************************************************************/
+
+/*** POSITION RELATIVE ***/
+
+/* 
+    Para hacer que el contenedor hijo se pueda posicionar respecto a los limites del padre, se utiliza position
+    relative, ya que con absolute se posicionaria respecto a los limites del viewport.
+
+.container {
+    background-color: aqua;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 150px;
+    left: 50px;
+}
+
+.hijo {
+    background-color: orange;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 100px;
+    top: 200px;
+}
+
+*/
+
+/*****************************************************************************************************************/
+
+/*** POSITION FIXED ***/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    background-color: purple;
+    height: 10vh;
+    position: fixed;
+    width: 100%;
+}
+
+img{
+    width: 80px;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+img:hover{
+    transform: scale(1.25);
+}
+
+section{
+    height: 100vh;
+}
+
+.uno{
+    background-color: yellow;
+}
+
+.dos{
+    background-color: lightseagreen;
+}

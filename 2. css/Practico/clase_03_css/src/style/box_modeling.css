@@ -1,0 +1,79 @@
+/*
+
+    MODELO DE CAJAS/BOX MODELING: Se tratan los contenedores como una caja dentro de un esquema de distribucion de 
+    elementos o cajas, con caracteristicas puntuales que se pueden modificar para agregar contenido, dimensiones, 
+    etc.
+
+    Tenemos la siguiente estructura del modelo de cajas:
+    - Contenido: Todo texto o elemento que coloquemos dentro de nuestro contenedor o caja.
+    - Border: Ayuda a delimitar el contenedor. El atributo border esta conformado por:
+        - border: grosor tipo color, en donde en tipo tenemos:
+            - solid: Borde solido.
+            - dotted: Borde punteado.
+            - dashed: Borde guionado.
+      Hoy en dia no se utiliza tanto border y se lo cambia por:
+        - box-shadow: X Y efumado grosor_de_la_sombra color
+    - Padding: El relleno es todo aquello que se encuentra dentro del contenedor (y dentro del borde), 
+      excepto texto y elementos. Se puede expandir o contraer a nuestro gusto. Si agregamos un valor
+      de padding a una caja, por ejemplo, la misma se expande hacia todos los lados por igual pero 
+      desde adentro. Tambien es posible expandir los lados por separado:
+      - padding-left
+      - padding-right
+      - padding-botton
+      - padding-top
+      - padding: top-bottom right-left
+      - padding: Y (top-bottom) X (right-left)
+      - padding: top right bottom left
+    - Margin: El margen es el espacio circundante al container por fuera de los bordes. El margen es similar
+      al relleno, pero computa a las afueras del borde, es decir, todo lo que esta circundante a la caja.
+      Tambien es posible expandir los lados por separado:
+      - margin-left
+      - margin-right
+      - margin-botton
+      - margin-top
+      - margin: top-bottom right-left
+      - margin: Y (top-bottom) X (right-left)
+      - margin: top right bottom left
+      Al aplicar un margen, este empuja todos los elementos al rededor de la caja, pero se empuja a la caja
+      misma respecto de los limites del navegador.
+
+*/
+
+/*****************************************************************************************************************/
+
+/*** PADDING + BORDER ***/
+
+/*
+
+.container{
+    width: 400px;
+    height: 400px;
+    background-color: blueviolet;
+    color: white;
+    border: 4px solid red;
+    box-shadow: 0px 1px 4px -1px black;
+    padding: 50px 100px 150px 200px;
+}
+
+*/
+
+/*****************************************************************************************************************/
+
+/*** MARGIN ***/
+
+.container{
+    width: 400px;
+    height: 400px;
+    background-color: brown;
+    color: white;
+    margin: 50px;
+}
+
+.container2{
+    width: 400px;
+    height: 400px;
+    background-color: blueviolet;
+    color: white;
+}
+
+
