@@ -1,0 +1,25 @@
+/********** FONT TYPES IMPORTATION **********/
+
+@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
+
+
+/********** CUSTOMS PROPERTIES **********/
+
+/* 
+En esta seccion contiene variables, las cuales son basicamente espacios de memoria en
+la computadora al que se le puede colocar un nombre y un valor.
+A las variables las definimos en la raiz de css, ya que la raiz de css es la misma para
+todas las hojas de css, por ende, sera posible acceder a dicha variable desde cualquier 
+hoja de css del proyecto.
+Todas las variables en css arrancan con "--", seguido de cualquier nombre generico.
+*/
+
+:root{
+    --primary-color: #55a455;
+    --primary-alpha-color: #55a45580;
+    --secundary-color: #785f44;
+    --white-color: #ffffff;
+    --primary-font: "Poller One", cursive;
+}
+
+/********** RESET **********/
