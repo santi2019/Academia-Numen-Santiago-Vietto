@@ -1,0 +1,117 @@
+/*
+    GRID: Es un sistema interno de css que comprende un paquete de propiedades. Es decir que siendo "grid"
+    un valor de la propiedad display, de este se desprende otro conjunto de propiedades.
+    
+    A diferencia de flexbox que es un sistema de distribucion de elementos dentro de un container,
+    grid es un sistema de estructura para desarrollar filas, columnas o una combinacion de ambas (grilla).
+    
+    El principal problema de grid es que, a diferencia de flexbox, no tiene caracteristicas innatas de
+    responsividad. Por lo tanto necesita apoyarse de otro sistema para que lo c
+    Ese sistema es "media query".
+    
+    Necesitamos un multiplo de la cantidad de filas definidas para crear una fila completa de elementos.
+    
+    Utilizamos fracciones adaptativas con:
+    - 1 fr: Una fraccion. Si tenemos 10 elementos, necesitamos 1/10 fracciones, por lo tanto 10fr, de igual
+      forma si fueran 17, etc. Ahora, si tenemos 100 utilizamos repreat. Es posible agregar un valor fijo.
+
+    Respecto a separaciones y las diferencias con flexbox:
+    - En flexbox:
+        - flex colum, gap row
+        - flex row, gap colum
+    - En grid:
+        - grid colum, gap colum
+        - grid row, gap row
+
+    Entonces, construimos una grilla con grid, y modificamos los containers internos con flexbox.
+
+    MEDIA QUERYS: Es una esrtuctura en la que se indica a partir de que punto de quiebre del ancho del dipositivo 
+    queremos que cambien las propiedades. La estructura es:
+    @media tipo_de_pantalla and (punto_de_quiebre)
+    - punto_de_quiebre:
+        - Si venimos del ancho al chico (PC a celular), buscamos el maximo ancho del siguiente dispositivo.
+        - Si venimos del chico al ancho (celular a PC), buscamos el minimo ancho del siguiente dispositivo.
+
+*/
+
+/*****************************************************************************************************************/
+
+/********** GRID **********/
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+
+  /*grid-template-columns: 100px 100px 100px 100px 100px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(8, 1fr) 100px repeat(8, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;*/
+
+    /*grid-template-columns: repeat(4, 1fr); De PC a mobil*/
+    grid-template-columns: repeat(1, 1fr); /*De mobil a PC*/
+}
+
+.box{
+    background-color: grey;
+    border: 1px solid white;
+}
+
+/*****************************************************************************************************************/
+
+/********** MEDIA QUERY **********/
+
+/*** DE PC A MOBILE ***
+* TABLET *
+
+@media screen and (max-width: 1300px){
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .box{
+        background-color: green;
+    }
+}
+
+* MOBILE *
+
+@media screen and (max-width: 585px){
+    .container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .box{
+        background-color: red;
+    }
+}
+
+*/
+
+/*** DE MOBILE A PC TABLET ***/
+/* TABLET */
+
+@media screen and (min-width: 768px){
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .box{
+        background-color: green;
+    }
+}
+
+/* PC */
+
+@media screen and (min-width: 1400px){
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .box{
+        background-color: red;
+    }
+}
