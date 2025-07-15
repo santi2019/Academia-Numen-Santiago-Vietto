@@ -1,0 +1,292 @@
+/********** FONT TYPES IMPORTATION **********/
+
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+/*************************************************************************************************/
+
+/********** CUSTOMS PROPERTIES **********/
+
+:root{
+    --primary-color: #b38a2a;
+    --primary-alpha-color: #fff5cc;
+    --secondary-color: #2e2e2e;
+    --navbar-color: #36240d;
+    --content-color: #f5ecd9;
+    --limit-color: #25303F;
+    --white-color: #ffffff;
+    --title-font: 'Crimson Text', serif;
+    --text-font: 'Bitter', serif;
+}
+
+/*************************************************************************************************/
+
+/********** RESET **********/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--text-font);
+    color: var(--secondary-color);
+    overflow-x: hidden; 
+    background-image: url("../assets/images/ring.jpg");
+    background-size: 100% 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+
+h1 {
+    font-family: var(--title-font);
+    color: var(--white-color);
+}
+
+p {
+    font-family: 'Bitter', serif;
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+/*************************************************************************************************/
+
+/********** UTILITIES **********/
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*************************************************************************************************/
+
+/********** PAGE STYLES **********/
+
+/*** NAVIGATION  ***/
+
+.nav_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5%;
+    position: fixed;
+    width: 100%;
+
+    & .nav_logo {
+        gap: 5px;
+
+        & img {
+            width: 85px;
+        }
+    }
+
+    & .nav_menu{
+        gap: 50px;
+
+        & .nav_item {
+            font-size: 1.125rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bolder;
+            transition: 0.3s ease;
+        }
+
+        & .nav_item:hover {
+            color: var(--primary-alpha-color);
+        }
+
+    }
+}
+
+.nav_active {
+    background-color: var(--navbar-color);
+}
+
+/*** HOME  ***/
+
+.home{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1.5%;
+    text-shadow: 2px 2px 2px black;
+
+    & h1 {
+        font-size: 5rem;
+    }
+
+    & p {
+        color: var(--white-color);
+    }
+}
+
+.introduction_section{
+    flex-direction: column;
+    height: 80vh;
+    background-color: var(--content-color);
+    padding: 0 5%;
+
+    & h2{
+        text-align: center;
+        font-size: 2.5rem;
+        padding-bottom: 2.5%;
+    }
+
+    & .introduction_container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+        & img{
+            width: 50%;
+            border-radius: 10px;
+        }
+    }
+}
+
+/*** NOTICIAS ***/
+
+.news_section{
+    flex-direction: column;
+    height: 120vh;
+    background-color: var(--content-color);
+    
+    & .news_title_container {
+        height: 16.75%;
+        background-color: var(--limit-color);
+        width: 100%;
+
+        & h2{
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--white-color);
+        }
+    }
+
+    & .news_content_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 83%;
+        padding: 2% 5%;
+
+        & .news_item{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+             & h3{
+                text-align: left;
+                font-size: 1.95rem;
+            }
+
+            & span{
+                font-style: italic;
+            }
+        }        
+    }
+}
+
+/*** FOOTER ***/
+
+.footer_container{
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    height: 15vh;
+    padding: 1% 5%;
+    width: 100%;
+    background-color: var(--limit-color);
+    column-gap: 50px;
+
+    & .footer_image_container{
+        & .footer_logo{
+            width: 75px;
+        }
+    }
+
+    & .footer_component_copyright{
+        text-align: justify;
+
+        & .footer_copyright{
+            font-size: 0.94rem;
+            color: var(--primary-color);
+        }
+    }
+
+    & .footer_component_contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & h3{
+            color: var(--primary-color);
+        }
+        & p{
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+    }
+
+    & .footer_component_social{
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        gap: 10px;
+
+        & .social_media_item{
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: 0.3s ease;
+        }
+
+        & .social_media_item:hover {
+            color: var(--primary-alpha-color); 
+        }
+    }
+}
+
+/********** MEDIA QUERY **********/
+
+/*** DE PC A MOBILE ***
+/* TABLET */
+
+@media screen and (max-width: 1300px){
+    .footer_container{
+        grid-template-columns: repeat(2, 1fr);
+        height: 35vh;
+    }
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 585px){
+    .news_section{
+        height: 200vh;
+    }
+
+    .footer_container{
+        grid-template-columns: repeat(1, 1fr);
+        height: 70vh;
+    }
+}
+
+
+
