@@ -21,7 +21,7 @@ const nuevaResta = 10 - 5 === 5;
 
 // Resuelve el siguiente problema matematico:
 
-const nuevoMultiplicacion = 10 * 4 === 40;
+const nuevaMultiplicacion = 10 * 4 === 40;
 
 // Resuelve el siguiente problema matematico:
 
@@ -73,7 +73,7 @@ function sonIguales(x, y){
     return x === y; 
 }
 
-function tieneMismaLongitud(str1, str2){
+function tienenMismaLongitud(str1, str2){
     // Devuelve "true si los dos strings tienen la misma longitud.
     // De lo contrario, devuelve "false".
     // Tu codigo:
@@ -88,13 +88,6 @@ function menosQueNoventa(num){
 }
 
 function mayorQueCincuenta(num){
-    // Devuelve "true" si el argumento de la funcion es mayor que cincuenta.
-    // De lo contrario, devuelve "false".
-    // Tu codigo:
-    return num > 50;
-}
-
-function obtenerResto(x, y){
     // Devuelve "true" si el argumento de la funcion es mayor que cincuenta.
     // De lo contrario, devuelve "false".
     // Tu codigo:
@@ -173,7 +166,7 @@ function esPositivo(numero) {
     // Tu código: Resolvemos con estructura ternaria, en la cual se retorna la opcion que se cumple.
     // Pero no es recomendable cuando hay mas de dos comparaciones.
     return numero > 0
-        ? "Es postivio"
+        ? "Es positivo"
         : numero < 0
             ? "Es negativo"
             : false
