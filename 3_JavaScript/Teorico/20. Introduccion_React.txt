@@ -1,0 +1,68 @@
+
+Framework: Es un marco o entorno de trabajo que nos da una forma encarar un proyecto. Por ejemplo, Bootsrap y Tailwiln son marcos
+de trabajo diferentes para trabajar con CSS. Pero tambien tenemos marcos de trabajo para JS, y entre ellos estan backbone, ember, 
+React, Angular, Vue, Svelte, Polymer, Quick, Astro, Solid, etc.
+
+React es mas bien una biblioteca o libreria.
+
+Un framework en si es un ecosistema, marco o entorno de librerias y lleno de funcionalidades, mientras que React solamente trae
+una sola funcionalidad concreta, la cual consiste en transpilar codgio. Especificamente, se transpila codigo React a codigo JS puro
+o JS vanilla.
+React es una biblioteca de JS eficiente y declarativa que se utiliza para crear interfaces interactivas.
+Si tenemos Angular12 con ciertas librerias y al año siguiente sale una nueva version para una libreria de manejo de formularios,
+no sera posible utilizarlo en dicho angular. En el caso de React si es posible actualizarlo de forma sucesiva, y cada nuevo
+proyecto que sale es posible colocar una nueva tecnologia de punta.
+El artifice de Angular es Google, y el de React es Meta, antiguamente Facebook.
+En paginas como State of JavaScritp es posible consultar el uso de las tecnologias relacionadas con JS. React desde el 2016 a la
+fecha es el indiscutible rey.
+
+Vite no es un framework, es una libreria y solo funciona del lado del cliente.
+NextJS es un framework SSR (Server Side Rendering), el codigo se va al backend y de ahi al navegador.
+Se se va a hacer una aplicacion que requiere SEO usamos NextJS, y sino requiere SEO usamos Vite. Es decir, un sitio web o App 
+que va a estar en la web para otros clientes, usamos NextJS, ahora, si usamos una App interna de la empresa o modulo que no tiene 
+que estar en la web, usamos Vite. 
+El sistema de entrutado de NextJS es prefabricado e intuitivo, mientras que en Vite hay que descargarlo todo a mano.
+
+Ventajas de React:
+    - Alto rendimiento.
+    - Se puede usar tanto del lado del cliente como del servidor.
+    - Se integra facilmente con otras tecnologias.
+    - Posee recursos abundantes ya que es mantenida por Meta y tiene una gran comunidad de contribuyentes.
+    - Es compatible con versiones anteriores.
+    - Posee una estructura facil de mantener gracias a su arquitectura basada en componentes.
+    - Posee documentacion multidioma.
+    - Maneja un flujo de datos unidireccional.
+
+Desventajas de React:
+    - Es complejo y la curva de aprendizaje es elevada.
+    - El uso de JSX (JavaScritp XML) agrega complejidad extra.
+    - Requiere de un gran conjunto de herramientas para funcionar de manera optima y ser compatible con otras tecnologias.
+    - Tiene problemas de SEO si no se usa un framework.
+
+Instalalcion de React: Para instalar React se lo recomienda hacer con uno de los frameworks hechos con React ya que React 
+original, el que creo Meta, no tiene mas soporte. Por ende, se sguirer instalarlo con NextJS, Remix o Gatsby, y tambien 
+esta Expo para aplicaciones nativas o mobiles (React Native) en iOS o Android.
+Pero para proyectos que no requieren SEO, se sugiere instalar React con Vite o Parcel.
+1. No seleccionar TypeScript
+2. Como listener seleccionamos ESLint
+3. No seleccionar Tailwind porque no lo vamos a usar.
+4. Seguimos considerando el directorio src.
+5. No seleccionar App Router.
+6. Seleccionamos Turbopack.
+7. Por convencion usamos el @, asi que colocamos que no queremos usar nada nuevo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
