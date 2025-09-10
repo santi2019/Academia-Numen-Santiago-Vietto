@@ -1,0 +1,69 @@
+
+
+1. Directorio Public: La carpeta Public posee todos aquellos elementos publicos que son, basicamente, elementos de media, como 
+   imagenes, por ejemplo, en formato svg, el cual es un formato liviano que aparenta ser una imagen en su visual, pero por detras 
+   es codigo. Este formato nos permite la creacion de diferentes etiquetas que no existen en HTML. Es un sistema de generador de 
+   vectores, a traves de los cuales se van creando imagenes. Al codigo, se puede cambiar el tamaño de la imagen, el color de fondo, 
+   los bordes, etc. Las ventajas de colocar imagenes en este directorio es que no es necesario, a la hora de instanciar un elemento 
+   de tipo img, colocar toda la ruta de la ubcacion de la imagen, ya que se la detecta colocando unicamente el nombre en la fuente 
+   (src).
+
+2. Archivo .gitignore: Es un archivo que permite que todo lo que se coloque en el no se suba a git. Esto es asi por diferentes 
+   motivos, por un lado, porque quizas no son necesarios para que funcione la aplicacion, y por otro lado hay directorios o archivos
+   que son muy pesados, como el directorio node_modules, por ejemplo.
+
+3. Hoja de eslint.config.mjs: Se instala durante el proceso de creacion del proyecto. Esta es una dependencia que muestra por 
+   terminal advertencias o warnaings al ejecutar el proyecto durante el desarrollo del mismo.
+
+4. jsconfig.json: Esta es una configuracion propia del entorno, que normalmente no se toca. Podemos importar modulos y extraer sus 
+   datos, pero al momento de hacerlo usamos un "@", el cual es una abrebiacion del directorio "src", y esta es una configuracion
+   basica de convencion, y esto es lo que esta configurado en este archivo.
+
+5. next.config.mjs: Esto es algo propio de Next.Js. Tiene configurado en True el modo estricto, el cual mantiene el JS de la aplicacion
+   estricto con respecto a buenas practicas. 
+
+6. package.json: Es una hoja de configuraciones que se suele tocar mucho.
+    - name: Nos indica cual es el nombre del proyecto.
+    - version: Version actual del proyecto (al crearlo indica la primera).
+    - private: Si esta en True indica que es privado. 
+    - scripts: Todo lo que esta adentro son comandos de la terminal, que en realidad son variables que contienen un comando mas largo.
+      Entonces, en lugar de ejecutar un codigo extenso ejecutamos, por ejemplo, npm run dev, y asi sucesivamente con el resto.
+        - dev: Permite arrancar el programa en el contexto de desarrollo (Incluye un icono de Next).
+        - start: Permite arrancar el programa en el contexto de como lo veria el cliente.
+        - build: Este se ejecuta cuando se quiere crear la carpeta de produccion, aquella que se lae va a dar al hosting. Al compilar 
+          crea una carpeta la cual se le provee a un servicio de hosting como hostinger o donweb.
+    - dependencies: Es un objeto en el cual se van a ir alojando, todas las dependencias que vamos instalando con la version correspondiente.
+      Estas son dependencias comunes que el software necesita para funcionar. Por ejemplo:
+      - Tailwind: Framework de CSS.
+      - Axios: Libreria para hacer peticiones.
+      - Fornik: Libreria para agregar formularios prefabricados.
+      - Express: Framework de Node para rutas de backend.
+    - devDependencies: Son dependencias de desarrollo, que en si el software no requieren para funcionar, sino que sirven para ayudarnos
+      a desarrollar. Por ejemplo:
+      - Nodemon: Dependencia que se usa en el backend para evitar tener que parar el servicio y volverlo a levantar cada vez que hacemos un
+        cambio en el codigo.
+      - Typescript: Es un superset de JS que nos da un sistema de tipado, por ejemplo, reasiganacion de tipos de variables. No es un codigo
+        que se ejecute, sino que esta ahi para controlarnos a nosotros para que no vayamos en contra de lo que establecimos originalmente.
+        Permite desarrollar de manera mas ordendada y robusta. En tiempo de compilacion se ven las configuraciones, pero no se ven en tiempo
+        de ejecucion, ya que es casi como un comentario para JS.
+
+7. Readme: Es un tipo de documento que se utiliza mucho para hacer documentacion de proyectos. Podemos encontrar:
+    - Codigo HTML para las imagenes.
+    - Los # indican titulos, y es mas chico el titulo cuantos mas numerales tiene.
+    - Con ```se hace un codigo de bloque que es posible copiarlo y se le puede indicar de que tipo es, por e jemplo, ```javascript, para que
+      elija los colores y el formato, como bash, python, etc.
+   El archivo posee los comandos tipicos que se usan en react por defecto, y un poco de documentacion sobre el proyecto base.
+
+8. Directorio src: Es el codigo fuente.
+    - Directorio style: Tenemos dos hojas de estilos:
+        - globals: Es la que antes se llamaba style.css.
+        - Home.module: Hojas modulares que en lugar de importarlas por medio de una etiqueta link en el html, se la va a importar como 
+          modulo de programacion.
+    - Directorio pages: Dentro de este directorio tenemos lo siguiente:
+        - Archivos JS: No se utiliza HTML, se construye HTML y con JS se lo compila a traves del DOM.
+            - _document: Es una configuracion propia de de Next donde esta la estructura del documento HTML, hecho todo con JS.
+            - _app: Esta la configuracion general para todas las paginas, que permite que a cada una le lleguen las mismas cosas de la
+              configuracion de Next.
+            - index: Es una representacion de la hoja index.html. 
+
+
