@@ -1,0 +1,108 @@
+/***** Componentes *****/
+
+Los componentes estructuras aisladas de logica, se suelen describir como la minima unidad logica dinamica y reutilizable. Delegamos 
+parte de un bloque de codigo en bloques mas pequeños, mas faciles de mantener y mas legibles.
+Los componentes normalmente se crean en una carpeta dentro del codigo funete, llamada components.
+Siempre los componentes en React van con mayusculas.
+Los componentes no van a tener solamente codigo JS, sino que tambien van a tener estructura de codigo JSX. Se usa un archivo con
+extension JS cuando solo va a tener logica JS nada mas.
+Los componentes pueden ser de dos tipos:
+- Componentes de clase: Los que usualmente se usaban hasta 2016. Estos se declaraban como clases.
+- Componentes funcionales: Los que usan desde 2016 hasta la actualidad. Estos se declaran como funciones.
+
+Estados: Tienen que ver con una variable que inicia con un valor determinado, y nosotros podemos actualizar ese estado durante la 
+interaccion. Por ejemplo:
+    contador + 1
+
+Hooks: Funciones nativas de React las cuales permiten manejar estados, manejar efectos secundarios o relativos al ciclo de vida de un 
+componente, manejar contextos, estados multiples, etc. Ante la aparicion de estos, se dejaron de usar las clases y se las reemplazaron
+por funciones.
+
+/**************************************************************************************************************************************/
+
+/***** Estructura de un componente *****/
+
+0. Con la palabra rafce creamos la estructura automaticamente.
+1. Al ser funciones comienzan con la palabra reservada const. 
+2. Tienen el nombre exacto que tiene la hoja en general.
+3. En lineas generales es una funcion flecha, puede ser representado por una funcion comun pero no es lo habitual.
+4. La funcion posee dentro un retorno de algo con JSX.
+5. Al componente que retorna JSX lo podemos mostrar en el index JS, ya que por si solo el componente no tiene una ruta para ser 
+mapeado en el navegador. Por ende, debemos referenciarlo en el archivo JS en el cual se mapea en el navegador. De esta manera podemos
+referenciar el componente en diferentes paginas. 
+6. Para exportarlo al componente, abajo y por fuera de la funcion colocamos la palabra reservada export seguido la palabra reservada 
+default la cual indica que, de todas las funciones que puede haber dentro de la hoja, la establecida seguido de dicha palabra es el 
+componente, en donde generalmente se coloca el nombre de la funcion general.
+7. Al importar el componente, nos va a dar un tipo de referencia especifica, que no podemos usar con funciones comunes, solo con 
+componentes. Basicamente es como si se creara una etiqueta HTML con el nombre del componente.
+
+De esta manera podemos estructurar una pagina sin la necesidad de construir el codigo HTML dentro de una sola hoja.
+
+- Se trabajo en archivo index.js
+
+import React from "react";
+import Seccion from "@/components/Seccion";
+import Head from "next/head";
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        { /* Meta etiquetas */ }
+      </Head>
+      <main>
+          <Navigation/>
+          <Home/>
+          <Seccion/>
+          <Technologies/>
+          <Testimonies/>
+          <Fomr/>
+      </main>
+      <Footer/>
+    </>
+  );
+}
+
+
+- Se trabajo en archivo Seccion.jsx
+
+const Seccion = () => {
+    return(
+
+        <h1>Hola</h1>
+    )
+}
+
+export default Seccion;
+
+/**************************************************************************************************************************************/
+
+Generamos un componente que represente una tarjeta. Al momento de estilizarlos se comienza por el componente mas chico y luego hacia 
+los que los contiene. Esta tecnica se llama Atomic Design, se construye desde la pieza de logica mas chica.
+En este caso no usamos hojas de CSS, sino que utilizamos etiquetas style propias de cada componente.
+
+Flujo de datos unidireccional: Cuando creamos un objeto, es posible trasladarlo de componentes padres a hijos. Pero este traslado 
+referenciado, no es posible hacerlo a la inversa. Tampoco es posible pasarlo entre dos elementos hermanos que esten dentro de la hoja de 
+Index, por ejemplo, de la seccion Home no se lo puede pasar a la seccion About. Entonces son unidireccional porque viajan en un solo 
+sentido.
+
+
+- Se crearon los componentes Boton, Tarjeta y Seccion.
+- Se trabajo en archivo index.js
+
+import React from "react";
+import Seccion from "@/components/clase_02/Seccion";
+
+export default function Home() {
+  return (
+    <>
+      <Seccion/>
+
+    </>
+  );
+}
+
+
+
+
+
