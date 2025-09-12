@@ -1,0 +1,54 @@
+/***** Estado *****/
+
+En programacion, tenemos permanentemente situaciones de cambio de estados. Por ejemplo, cuando se agrega un producto a un carro, el 
+carro tenia un estado inicial vacio, y al agregar un producto, se actualiza el estado del carro. Otro ejemplo seria si tenemos un item
+agregado al carrito, y si queremos añadir mas cantidades de ese item, el estado inicial que es 1, en este caso, va a actualizarse a 2, 
+luego a 3, etc. React trabaja los estados de una manera particular.
+
+DOM virtual: El DOM era la forma en la que JS trata al document HTML como un modelo de objeto. React maneja un DOM virtual, el cual 
+consiste, de forma analoga, en el arte de meter hojas de calcar delante de una hoja blanca con un dibujo, y que esas hojas de calcar 
+tengan un cambio en el dibujo original, pero como el cambio se hace sobre la hoja de calcar y no directamente sobre el dibujo, cuando se
+quitan las hojas de calcar, el dibujo esta intacto, pero con las hojas de calcar delante parece como si tubiera cambios. 
+Cuando se recarga la pagina, lo que sucede es que se carga automaticamente el DOM original, pero cada una de las hojas de calcar, al ser 
+DOM virtuales, no se cargan y se vuelve al estado inicial del DOM.
+Ademas, no se actualiza todo el DOM, sino que la hoja de calcar se aplica sobre el nodo particular o en cuestion el cual se quiere cambiar.
+Para simular este comportamiento es necesario una estructura, que nos permita de alguna manera manejar el estado. Para esto nceesitamos
+dos elementos:
+    1. Variable que guarde el valor inicial.
+    2. Funcion actualizadora, la cual recibe por parametros la actualizacion de la variable. Esta funcion reasigna el valor en la variable.
+    Al recargar el sitio, la variable vuelve a su valor inicial.
+Esto hace referencia a los:
+    - getters: Elemento del cual obtengo un valor. Usualmente una variable. (Obtener un valor)
+    - setters: Estructura con la cual actualizo el getter. (Establecer un nuevo valor para el objeto, y se actualiza)
+
+Renderizar: Pintar en el navegador el resultado del retorno de una funcion. Se llama asi porque las clases, como no pueden retornar 
+valores como las funciones, dentro de la clase se utiliza un metodo que le permita retornar un valor, y dicho metodo se llama render().
+
+Hooks: Funciones nativas que permiten darle a las funciones ciertas funcionalidades que antes se les eran reservadas a las clases. Una 
+de estas funciones es:
+ - UseState: Funcion que sirve para estructurar un modelo de estado. Esta funcion retorna un arreglo que por un lado tiene una variable 
+   (getter), y una funcion (setter). Para poder usar estas variables del arreglo por separado, usamos el concepto de destructuracion y 
+   asi extraelas al ambito global. Debemos tener cuidado con los nombres de variables para evitar conflictos en el mismo scope.
+   Los nombre de state y setState pueden variar de acuerdo a la tematica.
+   Le damos un valor al getter, por el argumento del llamado de la funcion.
+   En el caso del setter, no lo colocamos solo, la encerramos en una funcion para evitar que se ejecute por si sola, y se ejecuta
+   cuando se la lee.
+ - useEffect: Lo que hace es manejar el ciclo de vida de un componente. Lo que hace es tirar efectos secundarios cuando detecta un cambio
+   de estado. En el caso de UseState, este no puede reaccionar a la interaccion. Por ejemplo, cuando detecte el refresh de la pagina, haga
+   una peticion a la base de datos, y traiga datos para actualizar el estado del DOM y haga una efecto secundario, esto lo hace el useEffect,
+   porque tiene que detectar que sucedio algo para como respuesta ejecutar algo.
+   Inicialmente cumple la misma funcion que el addEventListener con el evento de recarga de DOM o DOMContentLoaded.
+   Cuando el useEffect esta vacio en los corchetes, detecta unicamente cuando se recarga el navegador, y de ahi ejecuta un efecto
+   secundario establecido. Cuando tiene algo, ademas de la recarga del navegador, contempla los cambios en el estado que le pasamos.
+
+Es posible hacer que los cambios aplicados sobre un nodo del DOM permanezcan una vez actualizado el nodo en cuestion, pero para esto
+se necesita una base de datos, ya que debemos consultar cada vez que se refresca la pagina a algun lote de informacion, y actualizar el 
+estado apenas se recarga el DOM, y acutlizar ese nodo.
+
+/**************************************************************************************************************************************/
+
+Se trabajo con el boton de actualizar cabello y con el boton para incrementar y decrementar el contador.
+
+- Se crearon los componentes Estado y Contador.
+- Se trabajo en archivo index.js
+
