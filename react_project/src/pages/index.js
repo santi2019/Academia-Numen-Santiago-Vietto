@@ -1,13 +1,15 @@
-import Contador from "@/components/clase_03/Contador";
-import Estado from "@/components/clase_03/Estado";
-import React from "react";
+import Reloj from "@/components/clase_04/Reloj";
+import { useState } from "react";
 
 
 export default function Home() {
+
+  const [visible, setVisible] = useState(false)
+
+
   return (
     <>
-      {/*<Estado/>*/}
-      <Contador/>
+      <Reloj/>
     </>
   );
 }

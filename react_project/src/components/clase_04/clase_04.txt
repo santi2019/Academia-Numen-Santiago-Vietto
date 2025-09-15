@@ -1,0 +1,55 @@
+/***** Ciclo de vida de un componente *****/
+
+- Fase de montaje: El DOM se va montando por partes, primero se carga el DOCTYPE, luego el head, luego el body, dentro de este ultimo se 
+cargan los elementos desde el principio hasta el final.
+- Fase de actualizacion: Si tenemos un componente que tiene un estado inicial y cada vez que ocurre algo especifico, ese estado cambia, 
+por lo que cada cambio es una actualizacion. Pero al recargar el navegador, el estado vuelve a su valor inicial, ya que se vuelve a montar
+el componente en el DOM.
+- Fase de desmontaje: Un componente se desmonta cuando se recarga el navegador, lo cual hace que el DOM se destruye y luego se vuelve a
+montar, o cuando nosotros hacemos que el DOM quite al componente. Cuando a un elemento le aplicamos en su CSS un display: none, no solo
+no se vera en el navegador, sino que tambien se borra del DOM, y al quitar dicha propiedad se monta otra vez.
+Otra forma de desmontarlo es mediante:
+  Contitional render: Esto indica que un componenete u objeto se va a renderizar en el navegador, si pasa tal cosa, de lo contrario no
+  se va a renderizar. Con true lo montamos, con false lo desmontamos.
+
+- Se trabajo en archivo index.js
+
+import { useState } from "react";
+
+
+export default function Home() {
+
+  const [visible, setVisible] = useState(false)
+
+
+  return (
+    <>
+      {/*visible ? <button>Click</button> : null*/}
+      {visible && <button>Click</button>}  {/* Alternativa para en lugar de usar null, solo depender del valor de visible, ya que devuelve el ultimo elemento valuado. */}
+    </>
+  );
+}
+
+/**************************************************************************************************************************************/
+
+Para el practico del reloj, se va a tener dos estados, en donde uno va a manejar la hora, y el otro va a manejar la visibilidad de la
+hora, ya que se quiere que al dar iniciar la hora se muestre y cuando se detenga que la hora no se muestre.
+Siempre que trabajamos con booleanos, tratamos que los nombres de las variables suenen a preguntas.
+El estado inicial de la hora debe ser la hora actual. En JS hay un objeto que nos permite trabajar con fechas y con horas. Este es el
+objeto Date(). En su es una clase, por lo que debemos instanciarlo para asi acceder a sus metodos.
+Como el hecho de que el reloj corra y se detenga, es un efecto secundario del cambio de estado de visibilidad, por lo tanto aca es 
+donde aparece useEffect. Para que trabaje se le indica que detecte como esta la visibilidad ahora, y para trabajar con esto, debemos
+tener una variable que arranque vacia, y cuando se muestra la hora, a esa variable le asignamos la logica que haga correr la hora,
+pero si se da a detener, que esa variable se vacie y no se ejecute nada. Se carga a la variable con una logica que haga correr el
+reloj, la cual consiste en que cada un segundo se vuelva a ejecutar la peticion de la hora, entonces segundo a segundo mostrara la
+hora del momento, pero en realidad es la copia de la hora pero que se muestra de manera consecutiva cada un segundo. Esto se logra
+con una estructura sincrona llamada setInterval(). Entonces al detectar la activacion, tenemos la actualizacion de la hora segundo a 
+segundo.
+Siempre el desmontaje en un useEffect es el return del useEffect. Entonces cuando el reloj de desmonte se ejecuta la logica de retorno,
+la cual es una funcion, en la que se quiere limpiar el intervalo. JS tiene un metodo llamado clearInterval() que espera como argumento
+una variable a limpiar que contenga un intervalo.
+
+
+- Se creo el componente Reloj.
+- Se trabajo en archivo index.js
+
