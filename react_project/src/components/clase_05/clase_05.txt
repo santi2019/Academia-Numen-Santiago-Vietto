@@ -1,0 +1,252 @@
+/***** Hooks *****/
+
+useReducer: Es un manejador de estados multiples. Lo que se busca es convertir un useState en algo que pueda manejar, no un unico estado,
+sino que nos ahorre tener que crear varios useState, por ejemplo, para crear un estado de la visibilidad, la hora, contador, etc. 
+En el proyecto del reloj hay dos estados, visibilidad y hora, en un sistema e-comerce tenemos un estado de carrito, un estado de producto,
+un estado de favoritos, etc. Entonces, lo que sucede es que vamos a tener varios useState, lo cual no es comodo para trabajar, a pesar de
+que es posible.  
+Cuando se piensa en vias de escalabilidad, se piensa en una estructura que permita manejar cierta canditdad de estados. Por ende, la forma
+mas comoda es convertir en cierto modo, a un supuesto estado inicial, en un objeto, a modo de que acumule muchos estados, y todos ellos 
+se manejen desde un mismo lugar.
+
+Operador de propagacion: Este operador permite la fusion del contenido de una coleccion, ya sea un arreglo o un objeto. Para entenderlo
+consideramos un arreglo que contiene numeros. Luego tenemos un segundo arreglo que contiene tambien numeros. Por ultimo, tenemos un 
+tercer arreglo que quiere almacenar el contenido de los otros dos arreglos. Queremos que cada uno de los elementos que contiene el 
+arreglo 1 se posicionen uno por uno en alguna posicion del arreglo 3. Por otro lado, copiar manualmente los elementos y referenciarlos
+es una tarea engorrosa. Por ende, aparece el concepto de propagacion ya que permite propagar el contenido de una coleccion dentro de 
+otra. Los tres puntos sucesivos significa "lo que contiene".
+
+const arr1 = [1,2,3]
+const arr2 = [4,5,6]
+
+const arr3[arr1]   // Esto coloca en la posicion 0 del arreglo 3, todo el arreglo 1.
+
+const [uno, dos, tres] = arr1
+const arr3 = [uno, dos, tres]     // Engorroso y feo.
+
+const arr3 = [...arr1, ...arr2]
+
+
+/**************************************************************************************************************************************/
+
+Para fucionar los estados, en el caso del nuevo contador, sabemos que lo que entra por setState ahora es un objeto al cual lo llamamos
+prevState, ya que es el estado previo a sufrir una modificacion. El objeto initialState va a entrar por prevState. Nosotros queremos
+entrar a la propiedad contador del objeto y hacer una modificacion, pero al querer hacer esa modificacion en el contador, no queremos
+tocar el estado de visibilidad. Entonces lo que se busca es poder guardar en la memoria como estaba el objeto, avisar que cierta 
+propiedad va a ser modificada, y las otras que no se avise no se van a tocar. Se retorna un objeto nuevo que contenga el contenido 
+original del objeto que llego, pero modificamos las propiedades que necesitamos. Guarda como estado previo unicamente a visible y a 
+contador se lo modifica.
+Cuando nosotros abrimos el objeto que nos llega, podemos guardar en la memoria del estado, las propiedades que ya venian de antemano, y
+seleccionar una o varias de ellas para modificar, y no tocar las otras. Si o si debemos hacer esto, porque de otro modo, al modificar
+el estado contador directamente, se retorna un objeto con una sola propiedad, por lo tanto el objeto se sobre escribe, incrementando 
+el estado contador y eliminando el estado visible.
+Al momento de resetear el contador, queremos que los estados trabajen de forma independiente, es decir que si la visibilidad esta en
+true, cuando contador vuelva a 0, no queremos que visibilidad vuelva a su estado inicial que es false. Por lo tanto aplicamos la 
+misma logica.
+
+
+- Se creo el componente Contador.
+- Se trabajo en archivo index.js
+
+
+import React, { useState } from 'react'
+
+const Contador = () => {
+
+    const initialState = {
+        contador: 0,
+        isVisible: false,
+    }
+
+    const [state, setState] = useState(initialState)
+
+
+    const incrementar = () => setState((prevState) => {
+        return{
+            ...prevState,  // Estado isVisible como estaba
+            contador: prevState.contador + 1
+        }
+    })
+    
+    const resetear = () => setState((prevState) => {
+        return{
+            ...prevState,  // Estado isVisible como estaba
+            contador: 0
+        }
+    })
+
+    const decrementar = () => setState((prevState) => {
+        return{
+            ...prevState,  // Estado isVisible como estaba
+            contador: prevState.contador - 1
+        }
+    })
+    
+    const handleVisibility = () =>
+        setState((prevState) => {
+            return {
+                ...prevState,  // Estado contador como estaba
+                isVisible: !state.isVisible
+            }
+        })
+
+
+
+  return (
+    <>
+        <div className="contador">
+            <div>
+                <button onClick={decrementar}>-</button>
+                <button onClick={resetear}>0</button>
+                <button onClick={incrementar}>+</button>
+                <button onClick={handleVisibility}>Mostrar</button>
+            </div>
+            { state.isVisible && <h3>{state.contador}</h3> }
+        </div>
+
+        <style jsx>{`
+            .contador{
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+        `}</style>
+    </>
+  )
+}
+
+export default Contador
+
+/**************************************************************************************************************************************/
+
+En el caso del useReducer, la declaracion tiene una variable inicial, en lugar de setState tiene un dispatch, y ademas, recibe tres
+argumentos en lugar de uno. El argumento numero dos es el objeto que contiene los estados, el tercer argumento es un argumento situacional
+o circunstancial, tambien conocido como init, y sirve mas que nada para cuando se quiere mostrar el estado renderizado en el navegador,
+este ademas pueda ser diferente al estado que se esta manejando en el codigo, por ejemplo, al incrementar de 0 a 1 el contador, el usuario
+puede estar viendo un incremento de 100 a 101, por que es la forma en la que se establece que se vea el estado. El primer estado es
+la funcion reductora la cual sirve para hacer que la logica de cada una de las funciones independientes esten en un unico lugar, para 
+esto se usa un switch case en donde cada caso tiene la logica de cada funcion. Si no entramos en ningun caso significa que no se hace 
+ningun cambio, por ende el default retorna el estado como esta.
+Ya no usamos prevState ya que esta definido en el useReduce, por ende el estado entra a la funcion reductora por medio del parametro, y 
+asi se puede comunicar con el state en cada uno de los casos.
+Ademas, para comunicarse con cada uno de los casos, se espera por parametro en la funcion reductora un objeto llamado action que tenga 
+dentro el valor declarado de cada caso. Este objeto tiene una propiedad llamada type em la cual se declara el valor del caso con el que
+nos queremos comunicar. Este lleva el nombre action porque fue creado asi. El objeto action se pasa a la funcion reductora por medio de
+el dispatch, pero hay que abrirlo y definir en la propidad type el caso con el que nos queremos comunicar.
+El break en los switches se utiliza cuando no tenemos otra forma de romper el caso. Cuando estamos en una funcion, una vez que se 
+retorna un valor la funcion se corta, ya que una funcion no puede retornar varias cosas a la vez, por ende, no es necesario colocar el
+break ya que nunca lo encontraria despues de un retorno.
+Los nombres de la variable del estado inicial, la funcion reductora, el dispatch y el estado pueden cambiar.
+
+
+- Se creo el componente Contador.
+- Se trabajo en archivo index.js
+
+
+import React, { useReducer, useState } from 'react'
+
+
+/*
+    A modo de resumen del funcionamiento, al hacer click en el boton de decrementar, se ejecuta la funcion decrementar.
+    Dicha funcion decrementar despacha el objeto de accion con un tipo determinado. Al despacharlo, se ejecuta la
+    funcion dispatch declarada, la cual despacha el objeto action que contiene, a la funcion reductora declarada en el 
+    useReducer, el cual es la orden con la que nos queremos comunicar.
+    En la funcion reductora se abren las puertas para ambas partes del hook. Una vez recibido el paquete, se extrae
+    el tipo, y en base a este accedemos al caso con el que nos queremos comunicar.
+
+*/
+
+const Contador = () => {
+
+    const initialState = {
+        contador: 0,
+        isVisible: false,
+    }
+
+    function reducer(state, action){
+        switch (action.type) {
+            case "INCREMENTAR": {
+                return{
+                    ...state,  
+                    contador: state.contador + 1
+                };
+            }
+            case "DEREMENTAR": {
+                 return{
+                    ...state, 
+                    contador: state.contador - 1
+                };
+            }    
+            case "RESETEAR": {
+                return{
+                    ...state,  
+                    contador: 0
+                }
+            }
+            case "MOSTRAR": {
+                return {
+                    ...state,  
+                    isVisible: !state.isVisible
+                }
+            }
+            default:
+                return state;
+        }
+    }
+
+    const [state, dispatch] = useReducer(reducer, initialState)
+
+
+    const incrementar = () => dispatch({type: "INCREMENTAR"})
+    
+    const resetear = () => dispatch({type: "RESETEAR"})
+
+    const decrementar = () => dispatch({type: "DECREMENTAR"})
+    
+    const handleVisibility = () => dispatch({type: "MOSTRAR"})
+
+
+  return (
+    <>
+        <div className="contador">
+            <div>
+                <button onClick={decrementar}>-</button>
+                <button onClick={resetear}>0</button>
+                <button onClick={incrementar}>+</button>
+                <button onClick={handleVisibility}>Mostrar</button>
+            </div>
+            { state.isVisible && <h3>{state.contador}</h3> }
+        </div>
+
+        <style jsx>{`
+            .contador{
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+        `}</style>
+    </>
+  )
+}
+
+export default Contador
+
+/**************************************************************************************************************************************/
+
+Como ultimas modificaciones, separamos el estado inicial, las referencias del tipo de accion y la funcion reductora por separado, para
+que el componente quede reducido y solo tena las funciones de logica.
+La funcion reductora tiene su propia hoja y puede crecer lo que sea necesario sin ensuciar ningun componente, y ademas accesible desde
+cualquir otro componente al no estar atrapada en el componente Contador. De igual modo con el estado inicial, globalizado en su propia
+hoja y pueda crecer todo lo que quiera, y el objeto de accion tambien globaliizado para que las referencias de las acciones las pueda
+usar cualquier componente.
+Si creamos un nuevo componente llamado Contador2, es posible observar que cada uno maneja un estado propio. Ambos funcionan porque 
+manejan el mismo reductor, pero pareciera como si cada uno de los contadores tiene un estado paralelo. A veces podemos querer esto, 
+pero otras veces no, por ejemplo, en un sistema e-comerce, cuando agregamos un producto A al carrito, no queremos que al agregar un
+producto B se agregue a otro carrito en lugar de al original. En el caso de los contadores, ambos tienen estados independientes, porque
+si bien la logica de los casos esta independiente y globalizada, y el estado inicial tambien esta independiente. El estado inicial 
+es una constante, pero sobre el mismo estado inicial podemos levantar dos estados mutables, y eso pasa porque cada uno de los componentes
+de Contador tiene su propio estado independiente. Entonces para que los dos componentes se vean afectados por el mismo estado, lo siguiente:
+const [state, dispatch] = useReducer(reducer, initialState)
+deberia esta alojado en algun lugar desde el cual se pase a ambos componentes la misma copia del estado. 
+La forma de globalizar un useReducer es mediante un cuarto hook llamado useContext, el cual es un mecanismo para poder hacer props 
+globales. Esto ademas permite importar las funcionalidades, por lo que ya no seria necesario tener las funciones en el componente.

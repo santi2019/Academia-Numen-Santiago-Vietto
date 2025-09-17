@@ -1,4 +1,5 @@
-import Reloj from "@/components/clase_04/Reloj";
+import Contador from "@/components/clase_05/Contador";
+import Contador2 from "@/components/clase_05/Contador2";
 import { useState } from "react";
 
 
@@ -9,7 +10,8 @@ export default function Home() {
 
   return (
     <>
-      <Reloj/>
+      <Contador/>
+      <Contador2/>
     </>
   );
 }
