@@ -17,3 +17,46 @@ Creacion de contenido:
     11. Creamos un componente para representar cada elemento añadido al carrito.
     12. A cada componente se le pasan las props.
     13. En cada componente extraemos los datos de cada props, los cuales son objetos, y los seteamos en los elementos JSX.
+    14. En el context creamos los despachos con los actions creados al comienzo.
+    15. Se recomienda que, los que reciban una importacion global, sean los padres de la cadena, a menos que se deba
+    llegar a un componente extremadamente anidado. Por ende, no se importan los contextos en los componentes de Product o 
+    CartItem, directamente se pasa por parametro o props directamente. Recordamos que para que se ejecuten las funciones
+    en cada componente, al hacer click, deben estar en funcion flecha para evitar que se ejecuten antes.
+    16. Cada componente utiliza las funciones en los botones, las cuales despachan el id al definirse los payload de las
+    acciones. Entonces, el id llega al reductor por medio del objeto action, y asi esta disponible para usarse en cada 
+    caso del Reducer.
+    17. En los botones del item del carrito definimos el valor de la propiedad all, la cual permitira definir que accion ejecutar, 
+    por lo que simplemente, si all es false se ejecuta REMOVE_ONE_ITEM, y si es true se ejecuta REMOVE_ALL_ITEMS.
+
+Logica de ADD_TO_CART:
+
+    1. Buscamos en la coleccion de productos, un producto cudo id coincide con el que llega desde la targeta. Entonces, la 
+    logica consiste en que por cada product almacenado en esta el array de productos, se compare 
+    el id de dicho producto con el que llega desde la tarjeta.
+    2. Se guarda el producto encontrado en una variable.
+    3. Se inserta el elemento en el arreglo de carrito, pero se guarda una copia de todo lo que hay ya en el estado inicial, 
+    y asi no borrar el arreglo de productos. Pero tambien hacemos copia de lo que hay en el carro para no sobreescribir los 
+    productos que se añaden.
+    4. Se revisa si el elemento ya existe en el carrito:
+        - Si esxiste, se incrementa la cantidad. Si el item sobre el que estamos parados no coincide con el que queremos agregar, 
+        entonces se devuelve tal cual esta, y no se toca, pero si coincide, se conservan todas las propiedades que no sean quantity, 
+        y al valor que contenga esta ultima se la incrementa en uno.
+        - Si no existe, se inserta el elemento en el carrito.
+
+Logica de REMOVE_ONE_ITEM: La logica es similar al del anterior pero con la diferencia de que busca en el carrito, pero se decrementa
+la cantidad o se elimina el item de la lista.
+    1. Agarramos un item a eliminar, pero no se puede comparar con newItem porque esta en el scope de la funcion anterior, por ende
+    lo unico que se usa para compara es el id que llega desde la tarjeta en el payload.
+    2. Se verifica si el item a borrar posee cantidad mayor a 1. Si es asi se decrementa la cantidad, caso contrario se elimina el item.
+    3. Para el caso de la eliminacion, se guarda una copia del state, y en el carrito se filtram todos aquellos items que no coincidan 
+    con el id del item a borrar. Entonces, nos quedamos con todos los items que no sean el que se quiera eliminar y por lo tanto no se
+    muestra el que coincide.
+
+Logica de REMOVE_ALL_ITEMS: La logica es igual a la anterior solo que sin la restriccion, ya que la idea es poder eliminar todas las
+cantidades sin importar cuantas alla. 
+    1. Como itemToDelete no existe en este ambito, tomamos el id del elemento que queremos eliminar.
+    2. Se busca en el carrito un elemento que coincida con ese id, para borrarlo, y nos quedamos con todos los demas.
+
+Logica de CLEAR_CART: En este caso simplemente se retorna el valor del estado inicial del InitialState.
+
+
