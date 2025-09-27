@@ -1,0 +1,19 @@
+Estructura:
+    1. Creamos el componente JSX del carro de compras
+    2. Creamos un contexto exclusivo para manejar el estado del carro.
+    3. Creamos una carpeta distinta para los reductores.
+
+Creacion de contenido:
+    1. Creamos el TYPE en el Action.
+    2. Creamos cada parte del componente JSX.
+    3. Insertamos el carrito de compras en el index.
+    4. Agregamos los estilos css en el global.
+    5. Creamos los estados iniciales en el InitialState.
+    6. Creamos el reductor para poder programar.
+    7. En el contexto, definimos el estado del reductor y las funciones para modificar el carrito.
+    8. Envolvemos el componente JSX entre el Context, en el index.
+    9. Importamos en el componente JSX todos los props que vamos a necesitar del Context.
+    10. Creamos un componente para representar cada producto individual.
+    11. Creamos un componente para representar cada elemento añadido al carrito.
+    12. A cada componente se le pasan las props.
+    13. En cada componente extraemos los datos de cada props, los cuales son objetos, y los seteamos en los elementos JSX.

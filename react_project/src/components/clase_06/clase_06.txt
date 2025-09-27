@@ -1,0 +1,63 @@
+/***** Hooks *****/
+
+useContext: Si tenemos un componente llamado A, y a su vez tiene hijos llamados A.1, A.2, pero tambien tiene un hermano llamado B y C, 
+cuando se quiere pasar props por ejemplo, si el estado esta en A, es posible pasarlo al hijo y al nieto, por herencia o flujo de datos
+unidireccional. Pero si el estado esta declarado en un nieto, no es posible pasarlo para arriba. Tampoco es posible pasar los estados
+a componentes hermanos. Entonces, aca surge el useContext, para el cual creamos una hoja aparte llamada context y declaramos el estado.
+Esta hoja aparte a su vez va a ser un compoenente, por lo tanto se va a poder referenciarlo con las etiquetas, y se va a envolver a 
+todos los elementos que queramos que accedan a dicho estado y pueda ser importado a los mismos. EL mismo estado es accesible por todos
+los elementos que esten envueltos en el contexto. La aplicacion completa puede estar recibiendo el mismo estado.
+El objetivo es gloablizar una prop.
+Los pasos a seguir son:
+    1. createContext(): Importamos el contexto desde React para poder crearlo.
+    2. Declarar el contexto. El contexto es una especie de caja dentro del cual se va a almacenar todas las props que queremos 
+    gloablizar, y pueden ser muchas o una.
+    3. Definir el paquete a exportar, el cual, generalmente va a ser un estado simple o reductor, con props.
+    4. Construimos la funcion que deseamos ejecutar.
+    5. Se define al Provider del contexto utilizando el contexto declarado. 
+    6. En el Provider se deben definir los props en una propiedad llamada value. Pero como value recibe un solo valor, de deben almacenar
+    los props en una unica variable.
+    7. Se define la lista de los elementos que pueden acceder al contexto. Hay dos formas de hacerlo:
+        - Declarando directamente dentro del Context.Provider los componentes creados. Pero si creamos nuevos componentes, estos 
+        deberan ser declarados en el index y a su vez en el context, y la lista puede crecer.
+        - Otra alternativa es declara el componenete Context en el archivo index y colocar los demas componenetes declarados dentro 
+        de las etiquetas de apertura y cierre del Context. Convirtiendo a todos los componenetes en hijos del proveedor. Y para listar
+        los elementos, el elemento prop posee una propiedad llamada children la cual hace referencia a todos los componentes envueltos
+        por la referencia del componente.
+Ahora, en cada uno de los componentes realizamos lo siguiente:
+    1. Se importa el Context.
+    2. Se importa al hook useContext para usar el contexto.
+    3. Se pasan todas las propiedades del Context a useContext, y se las extrae.
+Los hooks siempre deben estar dentro del componente.
+Con esta mecanica podemos lograr que el reducer llegue a todos los componentes.
+
+/**************************************************************************************************************************************/
+
+Creamos las tres partes que conforman una hoja HTML. Nuestro objetivo es armar un sistema claro-oscuro, de tal forma de que cuando se 
+le de a oscuro, los tres componentes cambien a oscuro, y si se le da a claro, los tres componentes cambien a claro. Inicialmnente la 
+estetica es fondo blanco y letras negras. Para manjar esta mecanica lo ideal es usar un useContext, porque si usamos un useState, la
+funcionalidad quedara atrapada dentro de un componente, y debemos aplicarlo luego en los demas. 
+En la carpeta context creamos un componente el cual su nombre debe indicar de que va a tratar, como por ejemplo, Theme, seguido de
+Context ya que va a aportar un contexto. Este compoenente es el que va a proveer de contexto de tema al resto de componenetes, por ende
+su nombre final sera ThemeContextProvider. ESte componente es de tipo JS y no JSX, ya que no posee componentes de JSX, pero la estructura
+es parecida.
+Para evitar definir la condicion del theme en cada componente, se crea un toggle en el ThemeContextProvider, y se lo provee como 
+propiedad. Hacemos lo mismo para cambiar el icono de sol-luna.
+
+
+- Se creo el componente Footer, Header, Main.
+- Se creo el componente ThemeContextProvider.
+- Se trabajo en archivo index.jss
+
+- El CSS en el global es:
+
+*{
+    margin: 0;
+}
+
+.dark{
+    background-color: black;
+    color: white;
+}
+
+
