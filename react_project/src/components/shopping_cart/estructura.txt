@@ -59,4 +59,20 @@ cantidades sin importar cuantas alla.
 
 Logica de CLEAR_CART: En este caso simplemente se retorna el valor del estado inicial del InitialState.
 
+/**************************************************************************************************************************************/
 
+Para darle persistencia al carrito lo que necesitamos es una API especial que simula un servidor y BD, llamada JSONPlaceholder.
+Vaciamos el contenido de Initial State porque toda la info la vamos a consumir desde el servidor.
+La carpeta db no esta en el frontend, suele estar en el backend. Creamos un archivo db.json en el cual pegamos la informacion.
+Para hacer funcionar JSONPlaceholder instalamos la libreria: json-server.
+Configuracion de la peticion:
+    1. En package.json, en la parte de scripts, declaramos el comando para ejecutar el backend, creando una nueva opcion llamada server.
+    2. Agregamos una nueva action llamada read state.
+    3. En el context creamos una funcion nueva del read state. La declaramos como asincrona, y como debemos llamar a dos enpoints del 
+    server, se arma un objeto llamado ENDPOINTS. Consultamos a nuestro backend, en lugar de una API externa. Y declaramos las dos variables
+    de peticion, para pedir la informacion por separado a cada uno de los endpoints. Luego entramos a la propiedad data de cada uno de los
+    objetos de respuesta, para capturar la informacion. A dicha informacion se los despacha en el payload. Esto se tiene que cargar, por
+    lo tanto se coloca un useEffect.
+    4. En el reductor, asignamos la informacion consultada a los parametros para poder representarlos en el componente. 
+    5. Agregamos la funcion en el contexto del componente de JSX.
+Podemos ver como persisten los datos de la base de datos, pero no los del carrito porque solo es persistencia de los productos.

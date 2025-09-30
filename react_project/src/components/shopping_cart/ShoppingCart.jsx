@@ -6,7 +6,7 @@ import CartItem from './CartItem';
 
 const ShoppingCart = () => {
 
-  const {state, addToCart, deleteFromCart, clearCart} = useContext(ShoppingCartContext);
+  const {state, addToCart, deleteFromCart, clearCart, readState} = useContext(ShoppingCartContext);
 
   // state es un objeto que dentro tiene productos y un carrito.
   const {products, cart} = state;

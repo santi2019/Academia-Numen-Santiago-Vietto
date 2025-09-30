@@ -1,0 +1,53 @@
+/***** Peticiones *****/
+
+Async await: O asincronia y espera, nos permite trabajar de forma similar al then, porque se sigue manejando la mecanica sincronica, 
+pero nos permite separar la peticion de lo que hacemos con la informacion que nos llega de la informacion, a diferencia de lo anterior
+donde trabajabamos todo dentro del fecth.
+    - async: Lo que hace es basicamente declarar una funcion como asincrona, para que JS sepa que tiene que mandar a la funcion a la 
+    cola de espera. 
+    - await: Basicamente declara una instruccion como asincrona, como diciendo que la funcion se ejecuta en secuencia con una instruccion
+    asincrona anterior. (Hago esto, y entonces lo otro).
+La primera estructura asincrona es la funcion en si, y cada instruccion interna que tenga el await va a ejecutarce como resultado de la
+funcion. 
+
+axios: Es otra libreria de peticiones, y yiene muy pocas diferencias con fetch. Solo camibia levenemte la estructura. Los datos ya 
+vienen parseados, solo que la informacion se encuentra en una propiedad data el cual es un arreglo. Entonces, en lugar de transformar
+de JSON a JS, simplemente se extrae ya transformado a JS la informacion desde la propiedad data.
+axios tiene muchas mas funcionalidades que fetch.
+
+/**************************************************************************************************************************************/
+
+Queremos tener una imagen que sea de frases inspiradoras.
+Se puede pensar la estructura de la cita inicial como un arreglo que contiene un objeto y que a su vez contiene dentro las propiedades
+de la cita que arrancan vacias porque aun no se solicito la informacion de la API. Pero es incomodo trabajar con un array si solo tiene
+un objeto. Entonces se puede tomar la cita inicial simplemente como un objeto, y se crea el estado de la cita.
+Ahora se crea la funcion de peticion:
+    - Se declara el endpoint. No se declara como await ya que no es una instruccion que debe resolverse, sino que es una variable que 
+    guarda un string.
+    - Se declara el fetch como response, porque basicamente es lo que vamos a obtener de la peticion, es decir, la respuesta del server.
+    La ejecucion del fetch depende de la ejecucion previa de la funcion asincrona, por ende espera que el ENDPOINT se resuelva.
+    - El objeto options es algo que se utiliza cuando generalmente se quiere informar el tipo de accion que se quiere ejecutar, y en el
+    header se indica la API key para porder acceder a la informacion.
+    - Se extrae la informacion tal cual se la necesita para construir la cita inicial. 
+    - No se declara la cita previa, porque se busca reemplazar el objeto completo, ya sea que este vacio o con una frase previamente.
+    - Se agrega un useEffect para que al recargar el sitio, tambien se muestre una cita.
+Es posible notar que al refrescar la pagina, tarda un momento en aparecer la frase y se nota el estado inicial vacio. Entonces agregamos
+un spinner. Creamos el estado para el espiner para preguntar si esta cargando o no. Se setea true antes de la consulta al servidor, y 
+false una vez que se obtuvo informacion desde el servidor.
+
+- Se crearon los componentes Cita, Loader y FrasesInspiradorasApp.
+- Se trabajo en archivo index.js
+
+
+import FrasesInspiradorasApp from "@/components/clase_07/FrasesInspiradorasApp";
+
+
+
+export default function Home() {
+
+  return (
+    <>
+      <FrasesInspiradorasApp/>
+    </>
+  );
+}
