@@ -76,3 +76,21 @@ Configuracion de la peticion:
     4. En el reductor, asignamos la informacion consultada a los parametros para poder representarlos en el componente. 
     5. Agregamos la funcion en el contexto del componente de JSX.
 Podemos ver como persisten los datos de la base de datos, pero no los del carrito porque solo es persistencia de los productos.
+
+Estructura de index.js:
+
+import ShoppingCart from "@/components/shopping_cart/ShoppingCart";
+import ShoppingCardContextProvider from "@/context/ShoppingCartContextProvider";
+
+
+
+export default function Home() {
+
+  return (
+    <>
+      <ShoppingCardContextProvider>
+          <ShoppingCart/>
+      </ShoppingCardContextProvider>
+    </>
+  );
+}

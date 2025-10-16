@@ -1,0 +1,115 @@
+********* CRUD *******
+
+Paso 1: Estructuracion  
+
+1. Tenemos un formulario y una tabla, y creamos para cada fila de la tabla un componente para que se mapee por cada elemento
+de la BD.
+2. Definimos el useState para el estado para manejar la base de datos. Y el estado inicial de la BD, por el momento son los 
+valores de initialDb.
+3. Llevamos la BD a la table y mapeamos cada uno de los rows con cada uno de los datos de la BD. Pasamos como prop los datos 
+de la DB, y asi por cada caballero que tengamos dentro de la DB, vamos a generar el componente SantosTableRow. Y dentro de 
+este componente pasamos el objeto de caballero a cada row como prop.
+4. En el componente SantosTableRow destructuramos las propiedades de caballero, y las asignmaos en cada parte correspondiente.
+
+5. El formulario tambien va a tener un estado, no relacionado con la DB, pero si tiene un estado ya que tiene que controlar 
+como se encuentran los inputs en todo momento, es decir, si estan vacios, si se estan cargando datos, si hay uno vacio y otro
+no, etc. Tenemos que poder capturar esa informacion. Cualquier formulario captura la data en forma de objeto, entonces, cada 
+uno de los datos de los inputs van a ir a parar en una propiedad del objeto del formulario.
+6. Creamos el useState del formulario. Y el estado inicial del formulario, como dijimos anteriormente va a ser un object, donde
+cada propiedad va a representar cada uno de los inputs, ademas del id que va a ser insertado. Es decir, el formulario en si va
+a representar un caballero a ingresar y debe tener las mismas propiedades que el caballero de la BD, solo que inicialmente 
+vacias.
+
+
+7. Preparamos todas las funciones que necesitamos. Todo lo relacionado con la persistencia va a ir en el componente SantosApp. 
+Creamos las funciones para el CRUD, como minimo las siguientes tres: 
+    - Funcion createSanto: Esta funcion va a recibir algo, 
+    - Funcion updateSanto: Esta funcion va a recibir algo, 
+    - Funcion delateSanto: Esta funcion va a recibir algo,
+    - Funcion readDb: En este caso no es readSanto, porque no estamos leyendo un caballero, sino que leemos el estado de la DB.
+      Pero como no es un reductor no nos hace falta colocar readState, porque el estado tiene nombre en este caso. Pero en el 
+      reductor el estado simplemente se llama estado porque contiene multiples estados internos.
+A las funciones las ordenamos de forma GET POST PUT DELETE.
+
+
+8. Definimos las funciones del formulario las cuales van a ser tres: 
+    - handleChange: Su objetivo es ejecutar una logica que detecta que se esta modificando informacion en los inputs del formulario.
+    Es decir, cada vez que detecte un tecleo, va a ejecutar una logica. Y dicha logica consiste en actualizar el estado del formulario.
+    - handleSubmit: Cuando se ejecuto el boton de submit del formulario, el formulario ejecuta esta funcion y despacha el contenido en 
+    la BD. Es el fomrulario quien detecta que el boton de submit fue accionado.
+    - handleReset: 
+
+9. Cuando queramos editar, la idea es que el nombre del caballero que querenos el nombre actual de dicho caballero a editar pase al formulario
+para ser modificado y reenviado. Para esto se debe caputarar el objeto del registro que se va a editar, y para esto se crea un estado dataToEdit
+cuyo estado inicial va a ser nulo hasta que un caballero se cargue en el.
+
+10. Por ultimo, antes de programar colocamos las funciones en sus correspondientes lugares.
+    - La funcion handleSubmit va en el formulario, handleReset en el boton de reset y handleChange en ...
+    - La funcion readDb va en un useEffect para que se carguen los caballeros apenas arranque la pagina. createSanto y updateSanto van a ir a 
+    parar al handleSubmit, delateSanto va a ir al boton de eliminar, y setDataToEdit, va a ir al boton de editar, pero tambien lo vamos a usar
+    en el formulario para que pueda editar el estado del formulario. Tanto delateSanto como setDataToEdit van como prop a cada elemento o fila
+    de la tabla.
+    - El estado de dataToEdit lo vamos a usar en un useEffect en el fomrulario.
+11. delateSanto va a recibir un ID para poder eliminar un caballero, y setDataToEdit van a recibir un caballero. Entonces, a delateSanto lo
+transformamos en function para poder pasarle el ID por argumento, y lo mismo hacemos con setDataToEdit para pasarle el caballero.
+
+12. En la funcion readDb, reemplazamos la BD. Para esto usamos una funcion asincrona, coloamos el endpoint, y guardamos el response utilizando
+await y axios. y Por ultimo extraemos a los santos desde data que es la propiedad del objeto de axios que se encuentra ya en JS, y la actualizacion
+del estado de la BD con el objeto de santos capturado.
+13. Colocamos un useEffect para que aparezcan los datos al cargarse el sitio.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Paso 2: Programacion del formulario 
+
+1.  Programacion de funciones contra el fomrulario:
+    - handleChange: El objetivo de esta es que cada vez que se ejecuta siempre va a hacer un setForm para atacar el objeto del estado inicial del formulario
+    pero solamente la propiedad del input que se esta cargando. Si en el setForm recibimos el prevForm, el cual representa lo mismo que la variable
+    form, que posee el estado del formulario, solo que se le coloca prevForm para que haga referencia a que se esta obteniendo los datos del formulario 
+    previos a lo que se va a hacer que es la actualizacion, y ademas se quiere entrar al formulario para modificar los datos. 
+    Como se dividio en handleChangeName y handleChangeConstellation, se mantienen persistente las variables que no corresponden y se modifica la que si. 
+    Para que la funcion detecte cual es el input que corresponde se utiliza un objeto event con la propiedad target el cual detecta cual es el elemento
+    objetivo de la interaccion. Todos los inputs tienen la propiedad value que es donde se carga la informacion. Entonces si el target es el input, queremos
+    entrar a su valor. Entonces llamamos al objeto de eventos y decimos que queremos la data que se esta cargando en el input.
+    Por ultimo, para que lo que se coloque en el estado del cambio, se coloque en el input y sea visible como value, lo que hacemos en el input es que 
+    colocamos que su value va a ser lo que lea de form.name.
+    Ahora, para combinar ambos handleChange, en lugar de identificar la propiedad a modificar, colocamos una insercion de objeto, a corde a lo que venga de
+    event.target.name 
+    Cuando ejecutemos el handleChange, en ambos inputs, el value lo va a ir a buscar al elemento con el que este interactuando, y el valor de la propiedad
+    donde va a insertar ese value lo va a ir a buscar al valor del name de ese input (hablando siempre de la propiedad name).
+    - handleReset: Su objetivo es volver al estado de form al estado inicial.
+    - handleSubmit: Inicialmente sabemos que los fomrularios no nos gustan mucho porque cuando se da a enviar la informacion del formulario se reinicia.
+    Entonces, para evitar esto utilizamos preventDefault. Lo segundo que hacemos es validar que los campos esten llenos. Por otro lado, verificamos el id
+    del objeto que esta cargado en el formulario, validando si es nulo o no. Si es nulo es porque estamos insertando unn nuevo caballero, pero si no lo es
+    es porque se esta enviando un caballero para editarlo. El caballero cargado en el formulario, lo pasamos como parametro para crear o editar. ESto hace
+    que dichas funciones, donde son creadas, reciban como parametro    
+    Finalmente, sea la opcion que sea llamamos a handleReset para que limpie el formulario. 
+2. Con useEffect capturamos los datos del caballero a editar. Cuando le damos a editar de un caballero, los datos se cargan en el estado inicial de
+la variable dataToEdit. Dicha informacion llega al fomrulario. Entonces, en dataToEdit llega el caballero a editar, por lo que se busca reemplazar el
+objeto vacio del formulario, por el objeto cargado en dataToEdit. Entonces, cuando haya un cambio, es decir, que pase de null a tener un caballero cargado
+en dataToEdit, entonces, con setForm sobreescribimos el estado del formulario con los valores de dataToEdit. Caso contrario, lo vuelve al estado inicial.
+3. Programacion de funciones contra la BD:
+    - createSanto: Cuando el santo llega a esta funcion, no tiene ID, por ende lo primero que se hace es insertarle un id. Para no tener que instalar una 
+    libreria de IDs, se coloca Date.now el cual es un metodo del objeto de fechas para meter la cantidad de milisegundos que llevan transcurridos desde
+    el 1ro de enero de 1970 hasta el presente. Hacemos que el ID sea de tipo string ya que las rutas no entienen de numeros.
+    La funcion es asincrona, y se llama al await y axios para el metodo post, pasandole el endpoint. Y creamos el objeto de request, el cual es el objeto
+    de peticion que mandamos, este nos permite indicar que metodo vamos a ejecutar (permitiendo reemplazarlo por el post de axios), en el headers indicamos 
+    que vamos a despachar el texto plano en forma de JSON, por ultimo tomamos la data de santo, y como vino en la propiedad data, tambien la mandamos en la
+    propiedad data, es decir, el objeto response viene con una propiedad data que trae la data que pedimos, y nuestro objeto request que va a ir al backend
+    tambien va a llevar la data que queremos insertar, en la propiedad data, pero no se la puede colocar directamente porque esta en JS, y el intercambio 
+    de informacion es en texto plano pero con un formato de JSON.
+    Siempre al final de una accion, hay que volver a leer la DB, para que lea lo nuevo y lo muestre al usuario. Por ende colocamos el readDb al final.
+    - updateSanto: Para este necesitamos un endpoint, no hace falta colocar un ID porque ya viene con uno. Para poder entrar a un caballero, entramos por
+    el ID, por ende para editar un caballero debemos seguir el endpoint seguido del ID del caballero, por lo que convertimos el endpoint en una cadena 
+    templada para que acepte variables, y le colocamos el ID que nos llegue. Hacemos que la funcion sea asincrona, utilizamos el await con axios, y volvemos
+    a preparar el objeto de request. EL metodo que utilizamos es PUT, y el header y data son iguales que el anterior porque estamos mandando un objeto. Al 
+    final, volvemos a recargar la interfaz visual.
+    - delateSanto: A la funcion le pasamos el santo entero. Extraemos el id para eliminar un caballero en particular, luego definimos el endpoint el cual
+    pega al ID de dicho caballero. En el objeto request colocamos como metodo DELETE, y no es necesario mandar data.
+    Agregamos una variable condicional, para preguntar si queremos borrar dicho caballero.
+
+    1.16.10
+
+
+
