@@ -109,7 +109,4 @@ en dataToEdit, entonces, con setForm sobreescribimos el estado del formulario co
     pega al ID de dicho caballero. En el objeto request colocamos como metodo DELETE, y no es necesario mandar data.
     Agregamos una variable condicional, para preguntar si queremos borrar dicho caballero.
 
-    1.16.10
-
-
 
