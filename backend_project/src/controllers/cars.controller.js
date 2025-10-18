@@ -1,12 +1,15 @@
+const {getAllCarsService, getCarByIdService, addCarService, updateCarService, deleteCarService} = require("../services/car.service")
 
-const getAllCars = (_, response) => {
-    response.json({nombre: "Megane", precio: 5000})
+const getAllCarsController = async (_, response) => {
+    const allCars = await getAllCarsService()
+
+    response.json(allCars);
 }
 
-const getCarById = (_, response) => {}
-const addCar = (request, response) => {}
-const updateCar = (request, response) => {}
-const deleteCar = (_, response) => {}
+const getCarByIdController = (_, response) => {}
+const addCarController = (request, response) => {}
+const updateCarController = (request, response) => {}
+const deleteCarController = (_, response) => {}
 
 
-module.exports = {getAllCars, getCarById, addCar, updateCar, deleteCar}
+module.exports = {getAllCarsController, getCarByIdController, addCarController, updateCarController, deleteCarController}

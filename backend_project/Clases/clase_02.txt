@@ -1,0 +1,53 @@
+
+Conexion a DB Mongo:
+
+1. Para conectarnos a la BD desde el backend, necesitamos instalar la dependencia mongoos.
+2. En Atlas, en la seccion de OVERVIEW -> CLUSTERS -> CONNECT -> MongoDB for VS Code, extraemos el enlace, y depsitamos la conexion en el archivo .env.
+3. Para conectarnos creamos un directorio nuevo llamado db, y en el mismo colocamos un archivo config para conectarnos de forma asincrona a la DB y el arhivo .env,
+importamos la URL, y declaramos la funcion de conexion con un try - catch ya que validamos si la conexion fue exitosa o no. Para las funciones asincronas es 
+importanticimo el try - catch, porque si no lo usamos, si la funcion falla no sabremos la razon. 
+4. Una vez aplicada la logica de conexion, buscamos que la conexion a la BD se ejecute cuando el backend se prenda, por ende exportamos la funcion, y la importamos 
+en app. En el packet JSON aramamos el comando para 
+5. En el archivo config delaramos la funcion y seguido la ejecutamos. Para evitar esto, tenemos la logica IIFE (Funcion Anonima autoejecutable), a cual se define
+como ()(), donde el primer parentesis hace referencia a la funcion, y el segundo hace referencia al llamado. Entonces pasamos de esto:
+
+    const connect = async () => {
+        try {
+            await mongoose.connect(DATABASE_URI);
+            console.log("Base de datos conectada !")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    connect (); 
+
+A esto:
+
+    (
+        async () => {
+            try {
+                await mongoose.connect(DATABASE_URI);
+                console.log("Base de datos conectada !")
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    )(); 
+
+
+6. En las colecciones no deberiamos poder insertar un objeto que no tiene la estructura requerida. Si el objeto a insertar tiene mas propiedades que las que
+el contrato establecido posee, entonces esas propiedades no se tienen en cuenta. Esos contratos son conocidos como models o modelos de un objeto de una coleccion
+en particular.
+Dentro del directorio models vamos a crear un modelo por cada objeto que queramos estructurar.
+Para crear el model necesitamos llamar a mongoose.
+7. Una vez que armamos el esquema del objeto, se guarda en una variable el modelo creado, se indica con que coleccion de la base de datos nos queremos conectar,
+y que representa el esquema. El primer argumento del metodo model define el nombre de cada objeto de una coleccion tal, por lo tanto, en el caso del ejemplo, cada 
+objeto dentro de la coleccion Car va a ser un Car. Una vez definido el nombre, mongo sabe que debe conectarse a una coleccion cuyo nombre es el plural en minuscula.
+En este caso sabe que debe conectarse con cars.
+El segundo argumento, se le pasa el esquema del modelo que representa cada objeto (contrato).
+8. Exportamos el modelo.
+
+9. EL controller no se dedica a la conexion con la DB. Se dedica solo a las respuestas, porque quizas tenemos una logica que pueda ser utilizada por varios controladores.
+Entonces se crea la ultima capa de abstraccion llamada service. En dichos archivos solamente queda la logica y podemos invocarla en mas de un controlador, y en cada
+controlador responder mensajes diferentes.

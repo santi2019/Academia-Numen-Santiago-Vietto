@@ -1,14 +1,14 @@
 const express = require("express");
-const {getAllCars, getCarById, addCar, updateCar, deleteCar} = require("../controllers/cars.controller");
+const {getAllCarsController, getCarByIdController, addCarController, updateCarController, deleteCarController} = require("../controllers/cars.controller");
 
-const carsRouter = express.Router();   // localhost:4000/cosmeticos
+const carsRouter = express.Router();   
 
 
-carsRouter.get("/productos", getAllCars)
-carsRouter.get("/productos", getCarById)
-carsRouter.post("/productos", addCar)
-carsRouter.put("/productos", updateCar)
-carsRouter.delete("/productos", deleteCar)
+carsRouter.get("/", getAllCarsController)
+carsRouter.get("/", getCarByIdController)
+carsRouter.post("/", addCarController)
+carsRouter.put("/", updateCarController)
+carsRouter.delete("/", deleteCarController)
 
 
 

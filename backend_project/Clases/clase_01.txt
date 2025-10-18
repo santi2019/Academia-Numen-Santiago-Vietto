@@ -200,3 +200,9 @@ Configuramos la cuenta con google:
 7. Vamos a la seccion DATABASE -> CLUSTERS. Apretamos en Connect y vamos a la parte de Compass. Compass es una plataforma interactiva donde podemos recorrer la BD
 a traves de una interfaz. Debemos instalarla asi que elegimos el SO, en mi caso Ubuntu.
 Mongo no necesita SQL, ya que al ser no relacional tiene otros metodos para pegarle a la DB mediante la mongo shell.
+8. Una vez descargado el compass, en la seccion de OVERVIEW -> CLUSTERS -> CONNECT -> COMPASS, se nos provee un enlace que nos permite conectarnos a la BD en cuestion.
+Un cluster es como una especie de biblioteca que puede tener multiples BDs, las cuales pueden tener multiples conelecciones. Una coleccion es una especie de array con muchos
+objetos, y la estructura de dichos objetos va a depender de lo que la coleccion espera.
+9. Abrimos el software de compass y damos a nueva conexion. Pegamos el enlace e introducimos en las secciones que corresponden el usuario y contraseña creados inicialmente.
+El manejo de compass se ve en la clase 2.
+
