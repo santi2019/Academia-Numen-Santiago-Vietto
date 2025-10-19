@@ -3,12 +3,11 @@ const {getAllCarsController, getCarByIdController, addCarController, updateCarCo
 
 const carsRouter = express.Router();   
 
-
 carsRouter.get("/", getAllCarsController)
-carsRouter.get("/", getCarByIdController)
+carsRouter.get("/:id", getCarByIdController)
 carsRouter.post("/", addCarController)
-carsRouter.put("/", updateCarController)
-carsRouter.delete("/", deleteCarController)
+carsRouter.put("/:id", updateCarController)
+carsRouter.delete("/:id", deleteCarController)
 
 
 
