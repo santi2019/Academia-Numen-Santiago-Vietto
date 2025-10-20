@@ -1,0 +1,19 @@
+Librerias:
+    - jsonwebtoken: Esta libreria nos permite poder crear tokens para los logins.
+    - bcryptjs: Nos permite encriptar contraseñas.
+    - express-validator: Nos permite trabajar mejor con los middlewares.
+Dependencia de desarrollo:
+    - nodemon: Nos permite levantar el servidor, y cuando se hacen cambios se actualizan automaticamente sin la necesidad de frenar el servicio y volver a 
+    levantarlo.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Creamos la configuracion del servicio backend en server.js.
+2. Creamos el puerto en el archivo .env
+3. En el archivo app.js llamamos al puerto.
+4. Creamos el route de users y auth, y los importamos en server.
+
+
+
+
+
