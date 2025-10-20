@@ -1,4 +1,4 @@
-const Car = require("../models/user.model")
+const Car = require("../models/car.model")
 
 const getAllCarsService = async () => {
     const allCars = await Car.find();

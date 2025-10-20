@@ -1,0 +1,25 @@
+Middleware: Es una funcion independiente que se usa como validacion entre una ruta y un controlador para validar determinados datos.
+1. Lo que queremos es validar cuando hacemos un POST o PUT, que los tipos de datos del objeto que viene desde el front (el objeto auto), 
+coincidan con el tipo de dato establecido con el objeto o modelo de mongo. Mongo va a ignorar las propiedades que no existan en el modelo
+o las propiedades que tengan un valor que no coinciden con el contrato.
+2. Creamos un archivo checkCarTypes para validar los tipos de datos de cada propiedad del objeto que llega desde el front, antes de alcanzar
+el controller. Todos los Middleware son en general sincronicos, porque una vez que el objeto llega al backend, al ejecutar estas funciones no 
+tenemos que esperar ninguna respuesta, es decir, simplemente evaluamos denro del backend. El controller es asincrono porque tiene que ir a 
+comunicarse con la BD.
+Posee tres parametros en lugar de dos:
+    - request: Es el objeto que viene del front.
+    - response: Es el objeto que nosotros le contestamos al front.
+    - next: Parametro que nos permite indicar cuando pasar a la siguiente instancia del router, porque la validacion dio bien y no hay problema.
+    Puede haber uno o mas middlewares, entonces termina uno y pasa al siguiente hasta llegar al controller.
+Por otro lado, es importante saber que tenemos dos tipos de middlewares:
+    - Middleware a nivel de ruta: Afecta a una ruta en particular pero no afecta a las otras.
+    - Middleware a nivel de aplicacion: Afecta a todas las rutas por igual. Estas se suelen colocar en el archivo de server en forma de:
+        app.use('/', middlewareApp);
+3. En checkCarTypes, primero se necesita recibir el objeto del frontend.
+4. Como vamos a chequear cada una de las propiedades del objeto, queremos validar los tipos en cada una. Para esto, creamos un arreglo que 
+pueda almacenar todos los mensajes de error que puedan saltar en cada uno de los casos. Si al final de las validaciones el arregl esta vacio,
+significa que no salto ningun error, y por lo tanto next. Caso contrario, se va a mostrar un mensaje con toda la coleccion de mensajes que se 
+fueron almacenando.
+5. Validamos cada caso y dentro de cada validacion pusheamos el mensaje correspondiente al arreglo.
+6. Si la longitud del arreglo de validacion es mayor que cero, significa que se colecciono un error, y se retorna un JSON al front que dice 
+el codigo, un mensaje y el arreglo de los errores. Pero si no tiene nada, se ejecuta next para avanzar al controller.
